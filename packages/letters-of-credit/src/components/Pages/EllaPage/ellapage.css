@@ -1,0 +1,48 @@
+.ellaPageContainer {
+  width: 100%;
+  height: -webkit-fill-available;
+  display: flex;
+  flex-direction: column;
+}
+
+.ellaLoadingSpan {
+  margin: auto;
+}
+
+.flexDiv {
+  display: flex;
+  flex-direction: row;
+}
+
+.ellaHeaderDiv {
+  width: 100%;
+  height: 10vh;
+}
+
+.ellaUsername {
+  float: left;
+  margin: 3vh;
+  font-weight: lighter;
+  font-size: 90%;
+}
+
+.ellaUsername:hover {
+  cursor: pointer;
+}
+
+.ellaMenuItems {
+  margin-top: 3vh;
+  margin-left: 20%;
+}
+
+.ellaMenuItems > span {
+  margin: 3vh;
+  font-weight: lighter;
+  font-size: 90%;
+}
+
+.ellaWelcomeDiv > h1 {
+  text-align: center;
+  margin-left: 6vh;
+  font-weight: lighter;
+}

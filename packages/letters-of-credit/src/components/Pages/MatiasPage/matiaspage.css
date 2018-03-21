@@ -1,0 +1,46 @@
+.matiasPageContainer {
+  width: 100%;
+  height: -webkit-fill-available;
+  display: flex;
+  flex-direction: column;
+}
+
+.matiasLoadingSpan {
+  margin: auto;
+}
+
+.flexDiv {
+  display: flex;
+  flex-direction: row;
+}
+
+.matiasHeaderDiv {
+  width: 100%;
+  height: 10vh;
+}
+
+.matiasUsername {
+  float: left;
+  margin: 3vh;
+  font-weight: lighter;
+  font-size: 90%;
+}
+
+.matiasUsername:hover {
+  cursor: pointer;
+}
+
+.matiasMenuItems {
+  margin-top: 3vh;
+  margin-left: 20%;
+}
+
+.matiasMenuItems > span {
+  margin: 3vh;
+  font-weight: lighter;
+  font-size: 90%;
+}
+
+.matiasWelcomeDiv > h1 {
+  margin-left: 6vh;
+}

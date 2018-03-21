@@ -5,4 +5,4 @@ Set up instructions:
 2. Deploy the bna
 3. Stand up the rest server
 4. Use the rest server to submit the CreateDemoParticipants transaction
-5. Run npm install and npm start in the argentina-app and belgium-app directories
+5. Run npm install and npm start

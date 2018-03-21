@@ -1,1 +1,0 @@
-## LoC Sample App
