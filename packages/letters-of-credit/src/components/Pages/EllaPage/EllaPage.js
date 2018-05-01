@@ -76,18 +76,28 @@ class EllaPage extends Component {
 
   generateStatus(letter) {
     let status = '';
+    let statusColour;
     if (letter.status === 'AWAITING_APPROVAL') {
       if (!letter.approval.includes('ella')) {
         status = 'Awaiting approval from YOU';
       } else if (!letter.approval.includes('bob')) {
         status = 'Awaiting approval from Beneficiary';
       }
-    } else {
+      statusColour = "red";
+    }
+    else {
       status = letter.status.toLowerCase();
       status = status.charAt(0).toUpperCase() + status.slice(1);
       status = ((letter.status === 'PAYMENT_MADE') ? status.replace(/_/g, ' ') : status);
+
+      if(letter.status === 'CLOSED') {
+        statusColour = "green";
+      }
+      else {
+        statusColour = "blue";
+      }
     }
-    return status;
+    return {status: status, statusColour: statusColour};
   }
 
   generateRow(i) {
@@ -100,12 +110,18 @@ class EllaPage extends Component {
         company = "Conga Computers"
       }
       let status = this.generateStatus(this.state.letters[i]);
+      let statusStyle = {
+        backgroundColor: status.statusColour
+      }
       return (
 		  	<tr className="row" onClick={() => this.openLetter(i)}>
-		  		<td className="blueText">{this.state.letters[i].letterId}</td>
+		  		<td className="purpleText">{this.state.letters[i].letterId}</td>
 		  		<td>{submitter}</td>
 		  		<td>{company}</td>
-		  		<td>{status}</td>
+		  		<td>
+            {status.status}
+            <span style={statusStyle}></span>
+          </td>
 		  	</tr>
       );
     } else {
@@ -134,9 +150,10 @@ class EllaPage extends Component {
       return (
         <div id="ellaPageContainer" className="ellaPageContainer">
           <div id="ellaHeaderDiv" className="flexDiv ellaHeaderDiv">
-            <span className="ellaUsername" onClick={() => {this.handleOnClick('bob')}}> {username} </span>
+            <span className="ellaUsername"> {username} </span>
           </div>
           <div id="ellaWelcomeDiv" className="ellaWelcomeDiv">
+            <span> {this.state.userDetails.bankName} </span>
             <h1> Welcome back {this.state.userDetails.name} </h1>
           </div>
           <div id="tableDiv">

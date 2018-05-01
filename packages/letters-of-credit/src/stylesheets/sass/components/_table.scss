@@ -24,6 +24,9 @@ th {
 	height: 5vh;
 }
 
+th:nth-child(2) {
+	padding-left: 2%;
+}
 .row:hover {
 	cursor: pointer;
 	background-color: #f6f8fb;
@@ -31,17 +34,31 @@ th {
 
 td {
 	height: 5vh;
+	font-weight: 500;
+	font-size: 12pt;
+	color: #999;
+}
+
+td:nth-child(2) {
+	padding-left: 2%;
+}
+
+td span {
+  height: 12px;
+  width: 12px;
+  border-radius: 50%;
+  display: inline-block;
+	margin-left: 5%;
 }
 
 .blueText {
 	color: #4d48da;
+	border-right: 1px solid grey;
+	font-weight: bold;
 }
 
-.viewMoreButton {
-	height: 3vh;
-	border: 1px solid #3b34c4;
-	border-radius: 20px;
-	margin-left: 6vh;
-	background-color: #3b34c4;
-	color: white;
+.purpleText {
+	color: #a0066f;
+	border-right: 1px solid grey;
+	font-weight: bold;
 }

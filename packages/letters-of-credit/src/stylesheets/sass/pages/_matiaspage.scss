@@ -9,6 +9,10 @@
   margin: auto;
 }
 
+.matiasUsernameIcon {
+  margin-right: 5px;
+}
+
 .flexDiv {
   display: flex;
   flex-direction: row;
@@ -17,18 +21,17 @@
 .matiasHeaderDiv {
   width: 100%;
   height: 10vh;
+  background-color: #3b34c4;
+  color: white;
 }
 
 .matiasUsername {
   float: left;
-  margin: 3vh;
+  margin-left: 6vh;
+  margin-top: 3vh;
   font-weight: lighter;
   font-size: 90%;
   text-decoration: none;
-}
-
-.matiasUsername:hover {
-  cursor: pointer;
 }
 
 .matiasMenuItems {
@@ -42,6 +45,13 @@
   font-size: 90%;
 }
 
+.matiasWelcomeDiv {
+  background-color: #3b34c4;
+  color: white;
+  border-bottom: 1px solid #e8e9eb;
+}
+
 .matiasWelcomeDiv > h1 {
   margin-left: 6vh;
+  font-weight: 500;
 }

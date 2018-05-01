@@ -20,7 +20,6 @@ class Table extends Component {
   					{this.props.rows}
   				</tbody>
   			</table>
-  			<button className="viewMoreButton">View more</button>
   		</div>
 		);
 	}

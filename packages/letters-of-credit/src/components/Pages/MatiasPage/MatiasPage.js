@@ -4,6 +4,7 @@ import { Redirect } from 'react-router-dom';
 import axios from 'axios';
 import Table from '../../Table/Table.js';
 import Config from '../../../utils/config';
+import matiasUsernameIcon from '../../../resources/images/viewLocIcon.png';
 
 class MatiasPage extends Component {
   constructor(props) {
@@ -76,6 +77,7 @@ class MatiasPage extends Component {
 
   generateStatus(letter) {
     let status = '';
+    let statusColour;
     if (letter.status === 'AWAITING_APPROVAL') {
       if (!letter.approval.includes('matias')) {
         status = 'Awaiting approval from YOU';
@@ -84,12 +86,21 @@ class MatiasPage extends Component {
       } else if (letter.approval.includes('ella') && !letter.approval.includes('bob')) {
         status = 'Awaiting approval from Beneficiary';
       }
-    } else {
+      statusColour = "red";
+    }
+    else {
       status = letter.status.toLowerCase();
       status = status.charAt(0).toUpperCase() + status.slice(1);
       status = ((letter.status === 'PAYMENT_MADE') ? status.replace(/_/g, ' ') : status);
+
+      if(letter.status === 'CLOSED') {
+        statusColour = "green";
+      }
+      else {
+        statusColour = "blue";
+      }
     }
-    return status;
+    return {status: status, statusColour: statusColour};
   }
 
   generateRow(i) {
@@ -97,15 +108,21 @@ class MatiasPage extends Component {
     let company = "QuickFix IT";
     if(this.state.letters[i].applicant === 'resource:org.acme.loc.Customer#bob') {
       submitter = "Bob Appleton";
-      company = "Conga Computers"
+      company = "Conga Computers";
     }
-    let status = this.generateStatus(this.state.letters[i])
+    let status = this.generateStatus(this.state.letters[i]);
+    let statusStyle = {
+      backgroundColor: status.statusColour
+    }
     return (
 			<tr className="row" onClick={() => this.openLetter(i) }>
 				<td className="blueText">{this.state.letters[i].letterId}</td>
 				<td>{submitter}</td>
 				<td>{company}</td>
-				<td>{status}</td>
+        <td>
+          {status.status}
+          <span style={statusStyle}></span>
+        </td>
 			</tr>
 		);
   }
@@ -131,12 +148,15 @@ class MatiasPage extends Component {
       return (
         <div id="matiasPageContainer" className="matiasPageContainer">
           <div id="matiasHeaderDiv" className="flexDiv matiasHeaderDiv">
-            <span className="matiasUsername" onClick={() => {this.handleOnClick('alice')}}> {username} </span>
+            <span className="matiasUsername">
+              <img src={matiasUsernameIcon} alt="" className="matiasUsernameIcon"/>
+              {username}
+            </span>
             <div id="matiasMenu" className="matiasMenuItems">
-              <span> Change account details </span>
-              <span> View Transaction History </span>
-              <span> Make Transaction </span>
-              <span> Viewing all Business Acccounts </span>
+              <span>Change Account Details</span>
+              <span>View Transaction History</span>
+              <span>Make Transaction</span>
+              <span>Viewing All Business Acccounts</span>
             </div>
           </div>
           <div id="matiasWelcomeDiv" className="matiasWelcomeDiv">
