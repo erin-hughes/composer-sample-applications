@@ -19,10 +19,10 @@ class BlockChainDisplay extends React.Component {
     let transactions = this.props.transactions;
     let blocks = [];
     if(transactions.length) {
-      for (let i = 0; i < transactions.length; i++) {
-        let name = transactions[i].transactionType.split(".")[3];
-        let blockNumber = this.addLeadingZero(i+1);
-        let dateTime = transactions[i].transactionTimestamp;
+      for (let i = transactions.length; i > 0; i--) {
+        let name = transactions[i-1].transactionType.split(".")[3];
+        let blockNumber = this.addLeadingZero(i);
+        let dateTime = transactions[i-1].transactionTimestamp;
         let date = dateTime.getFullYear() + '-' + this.addLeadingZero(dateTime.getMonth()+1) + '-' + this.addLeadingZero(dateTime.getDate());
         let time = dateTime.toTimeString().split(' ')[0];
         blocks.push(<Block transactionDetails={name} date={date} time={time} number={blockNumber}/>);
@@ -32,11 +32,11 @@ class BlockChainDisplay extends React.Component {
 
     return (
         <div className="BlockChainDisplay">
-          {blocks}
-          <div className="greyBlock">
+         <div className="greyBlock">
             <div className="greyBlockNumber">x</div>
             <div className="greyBlockLine"/>
           </div>
+          {blocks}
         </div>
     );
   }
