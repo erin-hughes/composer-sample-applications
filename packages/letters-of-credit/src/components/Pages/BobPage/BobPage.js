@@ -85,9 +85,11 @@ class BobPage extends Component {
 	generateCard(i) {
 		// should only show LOCs that are ready for Bob to approve
 		if (this.state.letters[i].approval.includes('ella')){
-			return (
-    	  <LoCCard letter={this.state.letters[i]} callback={this.state.callback} pageType={"view"} user="bob"/>
-			);
+      if(i < this.state.letters.length){
+        return (
+        	  <LoCCard letter={this.state.letters[i]} callback={this.state.callback} pageType={"view"} user="bob"/>
+        );
+      }
 		} else {
 			return <div />;
 		}
@@ -111,21 +113,20 @@ class BobPage extends Component {
 			return (
     		<div id="bobPageContainer" className="bobPageContainer">
     		  <div id="bobHeaderDiv" className="flexDiv bobHeaderDiv">
-    		    <span className="bobUsername" onClick={() => {this.handleOnClick('ella')}}> {username} </span>
-						<span className="aliceUsername" onClick={() => {this.handleOnClick('alice')}}> Go to Alice </span>
+    		    <span className="bobUsername"> {username} </span>
     		  </div>
           <div class="bobWelcomeDiv">
             <p id="welcomeMessage">Welcome back {this.state.userDetails.name}</p>
             <h1 id ="accountBalance">€{(this.state.userDetails.balance) ? this.state.userDetails.balance.toLocaleString() : 0}</h1>
           </div>
-    		  <div id="infoDiv" className="flexDiv infoDiv">
+    		  <div id="infoDivBob" className="flexDiv infoDivBob">
     		    <div id="bobDetailsDiv" className="bobDetailsDiv">
     		      <UserDetails name={this.state.userDetails.name} companyName={this.state.userDetails.companyName} IBAN={'BE05 1234 5678 0101'} swiftCode={'BOHUBE05'}/>
 						</div>
 
 					</div>
-    		  <div className="locDiv">
-    		    <LoCApplyCard user="bob" callback={this.state.callback} disableApply/>
+    		  <div className="locDivBob">
+    		    <LoCApplyCard user="bob" callback={this.state.callback} />
 						{cardsJSX}
     		  </div>
 				</div>

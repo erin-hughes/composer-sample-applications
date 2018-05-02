@@ -1,6 +1,6 @@
 .alicePageContainer {
   width: 100%;
-  height: -webkit-fill-available;
+  height: 100vh;
   background-image: url("../../resources/backgrounds/smallbackgroundslice.png"), url("../../resources/backgrounds/largebackgroundslice.png");
   background-repeat: no-repeat, no-repeat;
   background-color: #3B51DC;
@@ -80,7 +80,6 @@
   flex-direction: row;
   width: 100%;
   overflow-x: scroll;
-  padding-bottom: 7%;
 }
 
 .currentBalance {
