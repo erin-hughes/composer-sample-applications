@@ -3,7 +3,8 @@ import { Redirect } from 'react-router-dom';
 import Config from '../../utils/config';
 import '../../stylesheets/css/main.css';
 import axios from 'axios';
-import viewButtonIcon from '../../resources/images/viewLocIcon.png';
+import viewButtonIconAlice from '../../resources/images/viewLocIcon.png';
+import viewButtonIconBob from '../../resources/images/viewLocIconBob.png';
 
 class LoCCard extends Component {
   constructor(props) {
@@ -48,30 +49,67 @@ class LoCCard extends Component {
   }
 
   generateCardContents(letter, user) {
-    let contents = (
-      <div>
-        <h3>{'Ref: ' + letter.letterId}</h3>
-        <p>{'Participants: Alice, ' + letter.issuingBank + ', Bob, ' + letter.exportingBank}</p>
-        <p>{'Product Type: ' + letter.productDetails.productType}</p>
-        <button className="viewButton" onClick={() => this.handleOnClick()}>
-          <div className = "viewButtonImage">
-            <img src = {viewButtonIcon} alt = ""/>
+    let contents;
+    let newMessage = "";
+    if(!this.props.letter.approval.includes("bob")){
+      newMessage = "NEW";
+    }
+    //generate new LoC cards
+    if (user === 'bob') {
+      contents = (
+        <div className = "LoCCardBob">
+          <div>
+            <h3>{newMessage}</h3>
+            <h3>{'Ref: ' + letter.letterId}</h3>
+            Participants: <b>{'Alice, ' + letter.issuingBank + ', Bob, ' + letter.exportingBank}</b><br/><br/>
+            Product Type: <b>{letter.productDetails.productType}</b>
+            <div>
+              <img class="viewButtonBob" src={viewButtonIconBob} alt="View Letter of Credit" onClick={() => this.handleOnClick()}/>
+            </div>
           </div>
-          <p>View Letter Of Credit</p>
-        </button>
-      </div>
-    );
-
-    if (user === 'alice') {
-      if (letter.status !== 'AWAITING_APPROVAL' && letter.status !== 'APPROVED') {
-        contents = (
+        </div>
+      );
+    }
+    else { // if the current user is not bob then it must be alice
+      contents = (
+        <div className = "LoCCard">
           <div>
             <h3>{'Ref: ' + letter.letterId}</h3>
-            <p>{'This product is ready to be accepted'}</p>
-            <p>{'Product Type: ' + letter.productDetails.productType}</p>
-            <div className="shipButtonDiv">
-              <button className="acceptButton" onClick={() => {this.receiveProduct(letter.letterId)}} disabled={(letter.status === 'SHIPPED') ? false : true}>✓</button>
-              <span className="shipText">{'Accept Order'}</span>
+            Participants: <b>{'Alice, ' + letter.issuingBank + ', Bob, ' + letter.exportingBank}</b><br/><br/>
+            Product Type: <b>{letter.productDetails.productType}</b><p></p>
+            <button className="viewButton" onClick={() => this.handleOnClick()}>
+              <div className = "viewButtonImage">
+                <img src = {viewButtonIconAlice} alt = ""/>
+              </div>
+              <p>View Letter Of Credit</p>
+            </button>
+          </div>
+        </div>
+      );
+    }
+
+    //generate accepted LoC cards
+    if (user === 'bob') {
+      if (letter.status === 'APPROVED' || letter.status === 'SHIPPED' || letter.status === 'RECEIVED') {
+        // generating a hash from the timestamp
+        let idStyle;
+        if (letter.status === 'SHIPPED'){
+          idStyle = "LoCCardBobAccepted";
+        }
+        let hash = new Date().getTime().toString(24);
+        contents = (
+          <div className = "LoCCardBob" id= {idStyle}>
+            <div>
+              <h3>{'Ref: ' + letter.letterId}</h3>
+              <p>{'Ship this product'}</p>
+              <p>{'Product Type: ' + letter.productDetails.productType}</p>
+              <div className="shipButtonDiv">
+                <button className="shipButton" onClick={() => {this.shipProduct(letter.letterId, hash)}} disabled={(letter.status === 'APPROVED') ? false : true}>✓</button>
+                <span className="shipText">{'Ship Order'}</span>
+              </div>
+              <div>
+                <img class="viewButtonBob" src={viewButtonIconBob} alt="View Letter of Credit" onClick={() => this.handleOnClick()}/>
+              </div>
             </div>
           </div>
         );
@@ -81,13 +119,21 @@ class LoCCard extends Component {
         // generating a hash from the timestamp
         let hash = new Date().getTime().toString(24);
         contents = (
-          <div>
-            <h3>{'Ref: ' + letter.letterId}</h3>
-            <p>{'Ship this product'}</p>
-            <p>{'Product Type: ' + letter.productDetails.productType}</p>
-            <div className="shipButtonDiv">
-              <button className="shipButton" onClick={() => {this.shipProduct(letter.letterId, hash)}} disabled={(letter.status === 'APPROVED') ? false : true}>✓</button>
-              <span className="shipText">{'Ship Order'}</span>
+          <div className = "LoCCard">
+            <div>
+              <h3>{'Ref: ' + letter.letterId}</h3>
+              <p>{'This product is ready to be accepted'}</p>
+              <p>{'Product Type: ' + letter.productDetails.productType}</p>
+              <div className="shipButtonDiv">
+                <button className="acceptButton" onClick={() => {this.receiveProduct(letter.letterId)}} disabled={(letter.status === 'SHIPPED') ? false : true}>✓</button>
+                <span className="shipText">{'Accept Order'}</span>
+              </div>
+              <button className="viewButton" onClick={() => this.handleOnClick()}>
+                <div className = "viewButtonImage">
+                  <img src = {viewButtonIconAlice} alt = ""/>
+                </div>
+                <p>View Letter Of Credit</p>
+              </button>
             </div>
           </div>
         );
@@ -100,11 +146,9 @@ class LoCCard extends Component {
     if (this.state.redirect) {
       return <Redirect push to={this.props.user + "/loc"} />;
     }
-
+    let LoCCardStyle = (this.props.user == 'bob') ? "LoCCardBob" : "LoCCard";
     return (
-      <div className = "LoCCard">
-        {this.generateCardContents(this.props.letter, this.props.user)}
-      </div>
+        this.generateCardContents(this.props.letter, this.props.user)
     );
   }
 }

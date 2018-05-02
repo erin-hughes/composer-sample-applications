@@ -1,6 +1,6 @@
 .bobPageContainer {
   width: 100%;
-  height: -webkit-fill-available;
+  height: 100vh;
   background-color: #28293c;
   display: flex;
   flex-direction: column;
@@ -30,10 +30,6 @@
   text-decoration: none;
 }
 
-.bobUsername:hover {
-  cursor: pointer;
-}
-
 .bobMenuItems {
   margin-top: 3vh;
   margin-left: 20%;
@@ -46,8 +42,8 @@
   font-size: 90%;
 }
 
-.infoDiv {
-  height: 50vh;
+.infoDivBob {
+  height: 30vh;
 }
 
 .bobWelcomeDiv {
@@ -55,6 +51,7 @@
   margin-left: 0;
   margin-top: 0;
   color: white;
+  font-size: 20px
 }
 
 .bobDetailsDiv  {
@@ -67,20 +64,25 @@
   flex-direction: column;
 }
 
-.locDiv {
+.locDivBob {
   display: flex;
   flex-direction: row;
   width: 100%;
   overflow-x: scroll;
-  padding-bottom: 7%;
+}
+
+.LoCCardConnector {
+  border: 5px solid #7646c0;
+  width: 10px;
+  height: 10px;
 }
 
 #welcomeMessage {
-  font-size: 16px;
+  font-size: 20px;
   font-weight: lighter;
 }
 
 #accountBalance {
-  font-size: 50px;
+  font-size: 55px;
   font-weight: lighter;
 }
