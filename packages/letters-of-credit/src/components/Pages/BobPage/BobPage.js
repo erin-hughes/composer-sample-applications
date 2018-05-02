@@ -32,14 +32,7 @@ class BobPage extends Component {
 		// open a websocket
 		this.connection = new WebSocket(this.config.webSocketURL);
 		this.connection.onmessage = ((evt) => {
-			let eventInfo = JSON.parse(evt.data);
-			eventInfo = eventInfo.$class.split('.').pop();
-			if (eventInfo === 'MakePaymentEvent') {
 				this.getLetters();
-				this.getUserInfo();
-			} else {
-				this.getLetters();
-			}
 		});
 
 		// make rest calls
@@ -93,6 +86,14 @@ class BobPage extends Component {
 		}
 	}
 
+	getBalance() {
+		let balance = 12399;
+		this.state.letters.map(i => {
+			balance += i.status === 'CLOSED' ? i.productDetails.quantity * i.productDetails.pricePerUnit * 0.8 : 0;
+		});
+		return balance.toLocaleString();
+	}
+
   render() {
     if (this.state.redirect) {
       return <Redirect push to={"/" + this.state.redirectTo} />;
@@ -116,7 +117,7 @@ class BobPage extends Component {
     		  </div>
           <div class="bobWelcomeDiv">
             <p id="welcomeMessage">Welcome back {this.state.userDetails.name}</p>
-            <h1 id ="accountBalance">€{(this.state.userDetails.balance) ? this.state.userDetails.balance.toLocaleString() : 0}</h1>
+            <h1 id ="accountBalance">€{this.getBalance()}</h1>
           </div>
     		  <div id="infoDiv" className="flexDiv infoDiv">
     		    <div id="bobDetailsDiv" className="bobDetailsDiv">

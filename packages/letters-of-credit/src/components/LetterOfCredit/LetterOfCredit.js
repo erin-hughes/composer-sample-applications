@@ -36,7 +36,7 @@ class LetterOfCredit extends Component {
     axios.get(this.config.httpURL+'/system/historian')
     .then((response) => {
       let relevantTransactions = [];
-      let transactionTypes = ["InitialApplication", "Approve", "Reject", "ShipProduct", "ReceiveProduct", "MakePayment", "Close"];
+      let transactionTypes = ["InitialApplication", "Approve", "Reject", "ShipProduct", "ReceiveProduct", "ReadyForPayment", "Close"];
       response.data.forEach((i) => {
         let transactionLetter = ((i.eventsEmitted.length) ? decodeURIComponent(i.eventsEmitted[0].loc.split("#")[1]) : undefined);
         let longName = i.transactionType.split(".")
@@ -224,8 +224,8 @@ class LetterOfCredit extends Component {
       disableButtons: true
     });
     let letter = "resource:org.acme.loc.LetterOfCredit#" + letterId;
-    axios.post(this.config.httpURL+'/MakePayment', {
-      "$class" : "org.acme.loc.MakePayment",
+    axios.post(this.config.httpURL+'/ReadyForPayment', {
+      "$class" : "org.acme.loc.ReadyForPayment",
       "loc": letter,
       'beneficiary': "resource:org.acme.loc.Customer#bob",
       "transactionId": "",
@@ -313,7 +313,7 @@ class LetterOfCredit extends Component {
             <button disabled={this.state.disableButtons} onClick={() => {this.showModal('PAY')}}>Ready for Payment</button>
           </div>
         );
-      } else if (this.props.letter.status === 'PAYMENT_MADE' && this.state.user === 'ella') {
+      } else if (this.props.letter.status === 'READY_FOR_PAYMENT' && this.state.user === 'ella') {
         buttonJSX = (
           <div class="actions">
             <button disabled={this.state.disableButtons} onClick={() => {this.showModal('CLOSE')}}>Close this Letter of Credit</button>
@@ -348,7 +348,7 @@ class LetterOfCredit extends Component {
         <div class="letterContent">
           <DetailsCard disabled={true} type="Person" data={["Application Request"].concat(Object.values(this.props.applicant))}/>
           <DetailsCard disabled={true} type="Person" data={["Supplier Request"].concat(Object.values(this.props.beneficiary))}/>
-          <DetailsCard type="Product" data={["Product Details"].concat(Object.values(productDetails))} canEdit={this.props.isApply}/>
+          <DetailsCard type="Product" data={["Product Details"].concat(Object.values(productDetails))} canEdit={this.props.isApply} user={this.state.user}/>
         </div>
         <br/>
         <div class="rules">

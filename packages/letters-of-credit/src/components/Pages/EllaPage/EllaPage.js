@@ -88,7 +88,7 @@ class EllaPage extends Component {
     else {
       status = letter.status.toLowerCase();
       status = status.charAt(0).toUpperCase() + status.slice(1);
-      status = ((letter.status === 'PAYMENT_MADE') ? status.replace(/_/g, ' ') : status);
+      status = ((letter.status === 'READY_FOR_PAYMENT') ? status.replace(/_/g, ' ') : status);
 
       if(letter.status === 'CLOSED') {
         statusColour = "green";
