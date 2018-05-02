@@ -354,9 +354,7 @@ class LetterOfCredit extends Component {
         <div class="rules">
           <DetailsCard type="Rules" data={rules} canEdit={this.props.isApply}/>
         </div>
-        <div class="blockChainContainer">
-          <BlockChainDisplay transactions={this.state.transactions}/>
-        </div>
+        <BlockChainDisplay transactions={this.state.transactions}/>
         {buttonJSX}
         { this.state.disableButtons && <div class="statusMessage"> Please wait... </div> }
       </div>

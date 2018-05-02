@@ -339,10 +339,6 @@
   margin: auto;
   z-index: 999999999; }
 
-.bottomHack {
-  display: flex;
-  justify-content: space-between; }
-
 .userInfo {
   display: inline-block;
   padding: 2% 0 0 2%; }
@@ -371,7 +367,8 @@
   align-items: center;
   display: flex;
   margin: 0;
-  color: #95989a; }
+  color: #95989a;
+  min-height: 70px; }
 
 .BlockLine {
   background-color: #4880ff;
@@ -393,19 +390,18 @@
   position: absolute;
   bottom: 0;
   right: 0;
-  top: 20%;
-  overflow: auto;
+  top: 16%;
+  overflow: scroll;
   display: flex;
-  flex-direction: column;
-  height: 100%;
-  padding-right: 10%; }
+  flex-direction: column-reverse;
+  padding-right: 10%;
+  height: 500px; }
 
 .greyBlock {
   padding-left: 5px;
   padding-top: 10px;
   align-items: center;
-  margin: 0;
-  /*width: 50%;*/ }
+  margin: 0; }
 
 .greyBlockLine {
   background-color: #ddd;

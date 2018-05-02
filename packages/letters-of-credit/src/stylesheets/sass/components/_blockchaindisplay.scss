@@ -2,13 +2,12 @@
   position: absolute;
   bottom: 0;
   right: 0;
-  top: 20%;
-  // width: 100%;
-  overflow: auto;
+  top: 16%;
+  overflow: scroll;
   display: flex;
-  flex-direction: column;
-  height: 100%;
+  flex-direction: column-reverse;
   padding-right: 10%;
+  height: 500px;
 }
 
 .greyBlock {
@@ -16,7 +15,6 @@
   padding-top: 10px;
   align-items: center;
   margin: 0;
-  /*width: 50%;*/
 }
 
 .greyBlockLine {
