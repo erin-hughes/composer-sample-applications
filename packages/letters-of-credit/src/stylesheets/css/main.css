@@ -394,7 +394,7 @@
   overflow: scroll;
   display: flex;
   flex-direction: column-reverse;
-  padding-right: 10%;
+  padding-right: 5%;
   height: 500px; }
 
 .greyBlock {
