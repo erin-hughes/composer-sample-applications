@@ -41,17 +41,27 @@ class MatiasPage extends Component {
       this.getLetters();
     });
 
-    // make rest calls
-    let cURL = this.config.httpURL+'/BankEmployee/matias';
+    let userDetails = {};
+		let cURL = this.config.httpURL+'/BankEmployee/matias';
 		axios.get(cURL)
 		.then(response => {
+			userDetails = response.data;
+		})
+		.then(() => {
+			let bankURL = this.config.httpURL+'/Bank/'+userDetails.bank.split('#')[1];
+			console.log(bankURL);
+			return axios.get(bankURL)
+		})
+		.then(response => {
+			userDetails.bank = response.data.name;
 			this.setState ({
-				userDetails: response.data
-      });
-    })
-    .catch(error => {
-      console.log(error);
+				userDetails: userDetails
+			});
+		})
+		.catch(error => {
+			console.log(error);
     });
+    
     this.getLetters();
   }
 
@@ -79,11 +89,11 @@ class MatiasPage extends Component {
     let status = '';
     let statusColour;
     if (letter.status === 'AWAITING_APPROVAL') {
-      if (!letter.approval.includes('matias')) {
+      if (!letter.approval.includes('resource:org.acme.loc.BankEmployee#matias')) {
         status = 'Awaiting approval from YOU';
-      } else if (!letter.approval.includes('ella')) {
+      } else if (!letter.approval.includes('resource:org.acme.loc.BankEmployee#ella')) {
         status = 'Awaiting approval from Exporting Bank';
-      } else if (letter.approval.includes('ella') && !letter.approval.includes('bob')) {
+      } else if (letter.approval.includes('resource:org.acme.loc.BankEmployee#ella') && !letter.approval.includes('resource:org.acme.loc.Customer#bob')) {
         status = 'Awaiting approval from Beneficiary';
       }
       statusColour = "red";
@@ -136,7 +146,7 @@ class MatiasPage extends Component {
     }
 
     if(this.state.userDetails.name && !this.state.gettingLetters) {
-      let username = this.state.userDetails.name + ", Employee at " + this.state.userDetails.bankName;
+      let username = this.state.userDetails.name + ", Employee at " + this.state.userDetails.bank;
 
       let rowsJSX = [];
       if(this.state.letters.length) {

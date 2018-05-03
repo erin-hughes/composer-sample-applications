@@ -45,16 +45,22 @@ class BobPage extends Component {
 	}
 
 	getUserInfo() {
+		let userDetails = {};
 		let cURL = this.config.httpURL+'/Customer/bob';
 		axios.get(cURL)
 		.then(response => {
-			this.setState ({
-				userDetails: response.data
-      });
+			userDetails = response.data;
 		})
-		.catch(error => {
-			console.log(error);
-		});
+		.then(() => {
+			let bankURL = this.config.httpURL+'/Bank/'+userDetails.bank.split('#')[1];
+			return axios.get(bankURL)
+		})
+		.then(response => {
+			userDetails.bank = response.data.name;
+			this.setState ({
+				userDetails: userDetails
+			});
+		})
 	}
 
 	getLetters() {
@@ -77,7 +83,9 @@ class BobPage extends Component {
 
 	generateCard(i) {
 		// should only show LOCs that are ready for Bob to approve
-		if (this.state.letters[i].approval.includes('ella')){
+		if (this.state.letters[i].approval.includes('resource:org.acme.loc.BankEmployee#ella')){
+			let letter = this.state.letters[i];
+			letter
       if(i < this.state.letters.length){
         return (
         	  <LoCCard letter={this.state.letters[i]} callback={this.state.callback} pageType={"view"} user="bob"/>
@@ -102,7 +110,7 @@ class BobPage extends Component {
     }
 
 		if(this.state.userDetails.name && !this.state.gettingLetters) {
-			let username = this.state.userDetails.name + ", Customer of " + this.state.userDetails.bankName;
+			let username = this.state.userDetails.name + ", Customer of " + this.state.userDetails.bank;
 
     	let cardsJSX = [];
     	if(this.state.letters.length) {

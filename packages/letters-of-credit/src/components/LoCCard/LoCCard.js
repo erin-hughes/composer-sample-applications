@@ -61,7 +61,7 @@ class LoCCard extends Component {
           <div>
             <h3>{newMessage}</h3>
             <h3>{'Ref: ' + letter.letterId}</h3>
-            Participants: <b>{'Alice, ' + letter.issuingBank + ', Bob, ' + letter.exportingBank}</b><br/><br/>
+            Participants: <b>{'Alice, Penguin Banking, Bob, Bank of Hursley'}</b><br/><br/>
             Product Type: <b>{letter.productDetails.productType}</b>
             <div>
               <img class="viewButtonBob" src={viewButtonIconBob} alt="View Letter of Credit" onClick={() => this.handleOnClick()}/>
@@ -75,7 +75,7 @@ class LoCCard extends Component {
         <div className = "LoCCard">
           <div>
             <h3>{'Ref: ' + letter.letterId}</h3>
-            Participants: <b>{'Alice, ' + letter.issuingBank + ', Bob, ' + letter.exportingBank}</b><br/><br/>
+            Participants: <b>{'Alice, Penguin Banking, Bob, Bank of Hursley'}</b><br/><br/>
             Product Type: <b>{letter.productDetails.productType}</b><p></p>
             <button className="viewButton" onClick={() => this.handleOnClick()}>
               <div className = "viewButtonImage">

@@ -63,7 +63,7 @@ class BlockChainDisplay extends React.Component {
       for (let i = transactions.length; i > 0; i--) {
         let name = transactions[i-1].name;
         let blockNumber = this.addLeadingZero(i);
-        let dateTime = transactions[i-1].timestamp;
+        let dateTime = new Date(transactions[i-1].transactionTimestamp);
         let date = dateTime.getFullYear() + '-' + this.addLeadingZero(dateTime.getMonth()+1) + '-' + this.addLeadingZero(dateTime.getDate());
         let time = dateTime.toTimeString().split(' ')[0];
         blocks.push(<Block transactionDetails={name} date={date} time={time} number={blockNumber}/>);

@@ -40,17 +40,26 @@ class EllaPage extends Component {
       this.getLetters();
     });
 
-    // make rest calls
-    let cURL = this.config.httpURL+'/BankEmployee/ella';
+    let userDetails = {};
+		let cURL = this.config.httpURL+'/BankEmployee/ella';
 		axios.get(cURL)
 		.then(response => {
+			userDetails = response.data;
+		})
+		.then(() => {
+			let bankURL = this.config.httpURL+'/Bank/'+userDetails.bank.split('#')[1];
+			return axios.get(bankURL)
+		})
+		.then(response => {
+			userDetails.bank = response.data.name;
 			this.setState ({
-				userDetails: response.data
-      });
-    })
-    .catch(error => {
-      console.log(error);
+				userDetails: userDetails
+			});
+		})
+		.catch(error => {
+			console.log(error);
     });
+    
     this.getLetters();
 	}
 
@@ -78,9 +87,9 @@ class EllaPage extends Component {
     let status = '';
     let statusColour;
     if (letter.status === 'AWAITING_APPROVAL') {
-      if (!letter.approval.includes('ella')) {
+      if (!letter.approval.includes('resource:org.acme.loc.BankEmployee#ella')) {
         status = 'Awaiting approval from YOU';
-      } else if (!letter.approval.includes('bob')) {
+      } else if (!letter.approval.includes('resource:org.acme.loc.Customer#bob')) {
         status = 'Awaiting approval from Beneficiary';
       }
       statusColour = "red";
@@ -102,7 +111,7 @@ class EllaPage extends Component {
 
   generateRow(i) {
     // should only show LOCs that are ready for Ella to approve
-    if (this.state.letters[i].approval.includes('matias')) {
+    if (this.state.letters[i].approval.includes('resource:org.acme.loc.BankEmployee#matias')) {
       let submitter = "Alice Hamilton";
       let company = "QuickFix IT";
       if(this.state.letters[i].applicant === 'resource:org.acme.loc.Customer#bob') {
@@ -138,7 +147,7 @@ class EllaPage extends Component {
     }
 
     if(this.state.userDetails.name && !this.state.gettingLetters) {
-      let username = this.state.userDetails.name + ", Employee at " + this.state.userDetails.bankName;
+      let username = this.state.userDetails.name + ", Employee at " + this.state.userDetails.bank;
 
       let rowsJSX = [];
       if(this.state.letters.length) {
@@ -153,7 +162,7 @@ class EllaPage extends Component {
             <span className="ellaUsername"> {username} </span>
           </div>
           <div id="ellaWelcomeDiv" className="ellaWelcomeDiv">
-            <span> {this.state.userDetails.bankName} </span>
+            <span> {this.state.userDetails.bank} </span>
             <h1> Welcome back {this.state.userDetails.name} </h1>
           </div>
           <div id="tableDiv">
