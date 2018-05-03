@@ -31,7 +31,7 @@ class MatiasPage extends Component {
 
   openLetter(i) {
     this.props.callback(this.state.letters[i], false);
-    this.setState({isLetterOpen: true, redirectTo: 'matias'});
+    this.setState({isLetterOpen: true, redirectTo: '/matias/loc/' + this.state.letters[i].letterId});
   }
 
 	componentDidMount() {
@@ -139,7 +139,7 @@ class MatiasPage extends Component {
 
   render() {
     if(this.state.isLetterOpen) {
-      return <Redirect push to={this.state.redirectTo + "/loc"} />;
+      return <Redirect push to={this.state.redirectTo} />;
     }
     else if (this.state.redirect) {
       return <Redirect push to={"/" + this.state.redirectTo} />;

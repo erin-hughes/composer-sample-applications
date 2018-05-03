@@ -30,7 +30,7 @@ class EllaPage extends Component {
 
   openLetter(i) {
     this.props.callback(this.state.letters[i], false);
-    this.setState({isLetterOpen: true, redirectTo: 'ella'});
+    this.setState({isLetterOpen: true, redirectTo: '/ella/loc/' + this.state.letters[i].letterId});
   }
 
 	componentDidMount() {
@@ -143,7 +143,7 @@ class EllaPage extends Component {
       return <Redirect push to={"/" + this.state.redirectTo} />;
     }
     else if(this.state.isLetterOpen) {
-      return <Redirect push to={this.state.redirectTo + "/loc"} />;
+      return <Redirect push to={this.state.redirectTo} />;
     }
 
     if(this.state.userDetails.name && !this.state.gettingLetters) {

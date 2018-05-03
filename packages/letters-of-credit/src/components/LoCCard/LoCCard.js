@@ -144,7 +144,7 @@ class LoCCard extends Component {
 
   render() {
     if (this.state.redirect) {
-      return <Redirect push to={this.props.user + "/loc"} />;
+      return <Redirect push to={"/" + this.props.user + "/loc/" + this.props.letter.letterId} />;
     }
     let LoCCardStyle = (this.props.user == 'bob') ? "LoCCardBob" : "LoCCard";
     return (
