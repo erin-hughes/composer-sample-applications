@@ -1,7 +1,11 @@
+body {
+  background-color: #f5f6fa;
+}
+
 .LCcontainer {
   background-color: #f5f6fa;
   width: 100%;
-  height: -webkit-fill-available;
+  height: 100%;
 
   > br {
     clear: left;
