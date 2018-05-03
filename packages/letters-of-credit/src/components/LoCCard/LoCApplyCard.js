@@ -18,7 +18,7 @@ class LoCApplyCard extends Component {
 
   render() {
     if (this.state.redirect) {
-      return <Redirect push to={this.props.user + "/loc"} />;
+      return <Redirect push to={this.props.user + "/loc/create"} />;
     }
     let buttonStyle = "viewButton " + ((this.props.user === 'bob') ? "applyButtonBob" : "applyButtonAlice");
     return (
