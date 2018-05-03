@@ -90,15 +90,15 @@ class LoCCard extends Component {
 
     //generate accepted LoC cards
     if (user === 'bob') {
-      if (letter.status === 'APPROVED' || letter.status === 'SHIPPED' || letter.status === 'RECEIVED') {
+      if (letter.status === 'APPROVED' || letter.status === 'SHIPPED' || letter.status === 'RECEIVED' || letter.status === 'CLOSED') {
         // generating a hash from the timestamp
-        let idStyle;
-        if (letter.status === 'SHIPPED'){
-          idStyle = "LoCCardBobAccepted";
+        let idStyle = "LoCCardBobAccepted";
+        if (letter.status === 'APPROVED'){
+          idStyle = "";
         }
         let hash = new Date().getTime().toString(24);
         contents = (
-          <div className = "LoCCardBob" id= {idStyle}>
+          <div className = "LoCCardBob" id={idStyle}>
             <div>
               <h3>{'Ref: ' + letter.letterId}</h3>
               <p>{'Ship this product'}</p>
@@ -115,7 +115,7 @@ class LoCCard extends Component {
         );
       }
     } else {
-      if (letter.status !== 'AWAITING_APPROVAL') {
+      if (letter.status !== 'AWAITING_APPROVAL' && letter.status !== 'APPROVED') {
         // generating a hash from the timestamp
         let hash = new Date().getTime().toString(24);
         contents = (
