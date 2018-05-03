@@ -47,12 +47,21 @@ class AlicePage extends Component {
 	}
 
 	getUserInfo() {
+		let userDetails = {};
 		let cURL = this.config.httpURL+'/Customer/alice';
 		axios.get(cURL)
 		.then(response => {
+			userDetails = response.data;
+		})
+		.then(() => {
+			let bankURL = this.config.httpURL+'/Bank/'+userDetails.bank.split('#')[1];
+			return axios.get(bankURL)
+		})
+		.then(response => {
+			userDetails.bank = response.data.name;
 			this.setState ({
-				userDetails: response.data
-      });
+				userDetails: userDetails
+			});
 		})
 		.catch(error => {
 			console.log(error);
@@ -89,7 +98,7 @@ class AlicePage extends Component {
     }
 
 		if(this.state.userDetails.name && !this.state.gettingLetters) {
-			let username = this.state.userDetails.name + ", Customer of " + this.state.userDetails.bankName;
+			let username = this.state.userDetails.name + ", Customer of " + this.state.userDetails.bank;
 
     	let cardsJSX = [];
     	if(this.state.letters.length) {

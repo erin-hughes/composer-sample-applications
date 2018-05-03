@@ -151,16 +151,6 @@ class LetterOfCredit extends Component {
       "timestamp": "2018-03-13T11:35:00.218Z" // the transactions seem to need this field filled in; when submitted the correct time will replace this value
     })
     .then(() => {
-      let letter = "resource:org.acme.loc.LetterOfCredit#" + ("L" + currentTime);
-      return axios.post(this.config.httpURL+'/Approve', {
-        "$class": "org.acme.loc.Approve",
-        "loc": letter,
-        "approvingParty": this.state.user,
-        "transactionId": "",
-        "timestamp": "2018-03-13T11:25:08.043Z" // the transactions seem to need this field filled in; when submitted the correct time will replace this value
-      });
-    })
-    .then(() => {
       this.setState({
         disableButtons: false
       })
@@ -172,6 +162,12 @@ class LetterOfCredit extends Component {
   }
 
   approveLOC(letterId, approvingParty) {
+    let resourceURL = "resource:org.acme.loc.Customer#";
+
+    if (approvingParty === 'ella' || approvingParty === 'matias') {
+      resourceURL = "resource:org.acme.loc.BankEmployee#";
+    }
+
     if(!this.props.letter.approval.includes(this.state.user)) {
       this.setState({
         disableButtons: true
@@ -180,7 +176,7 @@ class LetterOfCredit extends Component {
       axios.post(this.config.httpURL+'/Approve', {
         "$class": "org.acme.loc.Approve",
         "loc": letter,
-        "approvingParty": approvingParty,
+        "approvingParty": resourceURL+approvingParty,
         "transactionId": "",
         "timestamp": "2018-03-13T11:25:08.043Z" // the transactions seem to need this field filled in; when submitted the correct time will replace this value
       })
@@ -273,13 +269,13 @@ class LetterOfCredit extends Component {
     let activeStep = 0;
 
     if (this.props.letter.status === 'AWAITING_APPROVAL') {
-      if (!this.props.letter.approval.includes('matias')) {
+      if (!this.props.letter.approval.includes('resource:org.acme.loc.BankEmployee#matias')) {
         activeStep = 1;
       }
-      else if (!this.props.letter.approval.includes('ella')) {
+      else if (!this.props.letter.approval.includes('resource:org.acme.loc.BankEmployee#ella')) {
         activeStep = 2;
       }
-      else if (!this.props.letter.approval.includes('bob')) {
+      else if (!this.props.letter.approval.includes('resource:org.acme.loc.Customer#bob')) {
         activeStep = 3;
       }
     }
@@ -300,7 +296,7 @@ class LetterOfCredit extends Component {
         pricePerUnit: this.props.letter.productDetails.pricePerUnit
       };
       rules = this.props.letter.rules;
-      if (this.props.letter.status === 'AWAITING_APPROVAL' && !this.props.letter.approval.includes(this.state.user)) {
+      if (this.props.letter.status === 'AWAITING_APPROVAL' && !this.props.letter.approval.includes('resource:org.acme.loc.BankEmployee#'+this.state.user)) {
         buttonJSX = (
           <div class="actions">
             <button disabled={this.state.disableButtons} onClick={() => {this.showModal('REJECT')}}>I reject the application</button>
