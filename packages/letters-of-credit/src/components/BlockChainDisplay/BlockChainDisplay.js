@@ -1,7 +1,6 @@
 import React from 'react';
 import '../../stylesheets/css/main.css';
 import Block from '../../components/Block/Block.js';
-import axios from 'axios';
 
 class BlockChainDisplay extends React.Component {
   constructor(props) {

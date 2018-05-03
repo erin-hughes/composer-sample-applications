@@ -3,7 +3,6 @@ import '../../../stylesheets/css/main.css';
 import { Redirect } from 'react-router-dom';
 import axios from 'axios';
 import UserDetails from '../../UserDetails/UserDetails.js';
-import Alert from '../../Alert/Alert.js';
 import LoCCard from '../../LoCCard/LoCCard.js';
 import LoCApplyCard from '../../LoCCard/LoCApplyCard.js';
 import Config from '../../../utils/config';

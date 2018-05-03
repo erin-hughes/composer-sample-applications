@@ -20,7 +20,7 @@ class LoCApplyCard extends Component {
     if (this.state.redirect) {
       return <Redirect push to={this.props.user + "/loc"} />;
     }
-    let buttonStyle = "viewButton " + ((this.props.user == 'bob') ? "applyButtonBob" : "applyButtonAlice");
+    let buttonStyle = "viewButton " + ((this.props.user === 'bob') ? "applyButtonBob" : "applyButtonAlice");
     return (
       <div className="LoCCard noBorder">
         <h3>Letter of Credit Application</h3>
