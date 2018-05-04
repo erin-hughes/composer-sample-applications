@@ -20,15 +20,12 @@ class BlockChainDisplay extends React.Component {
       } else if (tx.transactionType === 'org.acme.loc.Approve') {
         switch (index) {
           case 1: 
-            transaction.name = 'Approved by Alice'; 
+            transaction.name = 'Approved by Matías'; 
             break;
           case 2:
-            transaction.name = 'Approved by Matías';
-            break;
-          case 3:
             transaction.name = 'Approved by Ella';
             break;
-          case 4:
+          case 3:
             transaction.name = 'Approved by Bob';
             break;
           default: 
@@ -66,7 +63,6 @@ class BlockChainDisplay extends React.Component {
         let date = dateTime.getFullYear() + '-' + this.addLeadingZero(dateTime.getMonth()+1) + '-' + this.addLeadingZero(dateTime.getDate());
         let time = dateTime.toTimeString().split(' ')[0];
         blocks.push(<Block transactionDetails={name} date={date} time={time} number={blockNumber}/>);
-
       }
     }
 
