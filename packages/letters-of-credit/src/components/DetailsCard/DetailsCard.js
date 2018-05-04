@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import editIcon from '../../resources/editIcon.svg';
 import '../../stylesheets/css/main.css';
 import { connect } from "react-redux";
 import { getProductDeatils } from "../../actions/actions";

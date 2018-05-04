@@ -23,7 +23,7 @@ class LoCCard extends Component {
 
   shipProduct(letterId, evidenceHash) {
     let letter = "resource:org.acme.loc.LetterOfCredit#" + letterId;
-    axios.post(this.config.httpURL+'/ShipProduct', {
+    axios.post(this.config.restServer.httpURL+'/ShipProduct', {
       "$class": "org.acme.loc.ShipProduct",
       "loc": letter,
       "evidence": evidenceHash,
@@ -37,7 +37,7 @@ class LoCCard extends Component {
 
   receiveProduct(letterId) {
     let letter = "resource:org.acme.loc.LetterOfCredit#" + letterId;
-    axios.post(this.config.httpURL+'/ReceiveProduct', {
+    axios.post(this.config.restServer.httpURL+'/ReceiveProduct', {
       "$class": "org.acme.loc.ReceiveProduct",
       "loc": letter,
       "transactionId": "",
@@ -117,7 +117,6 @@ class LoCCard extends Component {
     } else {
       if (letter.status !== 'AWAITING_APPROVAL' && letter.status !== 'APPROVED') {
         // generating a hash from the timestamp
-        let hash = new Date().getTime().toString(24);
         contents = (
           <div className = "LoCCard">
             <div>
@@ -146,7 +145,6 @@ class LoCCard extends Component {
     if (this.state.redirect) {
       return <Redirect push to={"/" + this.props.user + "/loc/" + this.props.letter.letterId} />;
     }
-    let LoCCardStyle = (this.props.user == 'bob') ? "LoCCardBob" : "LoCCard";
     return (
         this.generateCardContents(this.props.letter, this.props.user)
     );
