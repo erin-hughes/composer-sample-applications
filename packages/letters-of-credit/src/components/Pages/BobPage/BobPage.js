@@ -30,7 +30,7 @@ class BobPage extends Component {
 
 	componentDidMount() {
 		// open a websocket
-		this.connection = new WebSocket(this.config.webSocketURL);
+		this.connection = new WebSocket(this.config.restServer.webSocketURL);
 		this.connection.onmessage = ((evt) => {
 				this.getLetters();
 		});
@@ -46,13 +46,13 @@ class BobPage extends Component {
 
 	getUserInfo() {
 		let userDetails = {};
-		let cURL = this.config.httpURL+'/Customer/bob';
+		let cURL = this.config.restServer.httpURL+'/Customer/bob';
 		axios.get(cURL)
 		.then(response => {
 			userDetails = response.data;
 		})
 		.then(() => {
-			let bankURL = this.config.httpURL+'/Bank/'+userDetails.bank.split('#')[1];
+			let bankURL = this.config.restServer.httpURL+'/Bank/'+userDetails.bank.split('#')[1];
 			return axios.get(bankURL)
 		})
 		.then(response => {
@@ -65,7 +65,7 @@ class BobPage extends Component {
 
 	getLetters() {
 		this.setState({gettingLetters: true});
-		axios.get(this.config.httpURL+'/LetterOfCredit')
+		axios.get(this.config.restServer.httpURL+'/LetterOfCredit')
     .then(response => {
 			// sort the LOCs by descending ID
 			response.data.sort((a,b) => b.letterId.localeCompare(a.letterId));

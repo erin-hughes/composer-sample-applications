@@ -241,6 +241,19 @@
   margin-left: 6vh;
   font-weight: 500; }
 
+.tutorialPageContainer {
+  position: absolute;
+  top: 50px;
+  width: 750px;
+  left: 50%;
+  margin-left: -400px;
+  background-color: #FFF;
+  padding: 25px;
+  border-bottom: 50px solid #f5f6fa; }
+
+body {
+  background-color: #f5f6fa; }
+
 .Page {
   height: 100vh;
   width: 100%; }

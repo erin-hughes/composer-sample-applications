@@ -58,7 +58,7 @@ class LetterOfCredit extends Component {
   }
 
   componentWillMount() {
-    axios.get(this.config.httpURL+'/system/historian')
+    axios.get(this.config.restServer.httpURL+'/system/historian')
     .then((response) => {
       let relevantTransactions = [];
       let transactionTypes = ["InitialApplication", "Approve", "Reject", "ShipProduct", "ReceiveProduct", "ReadyForPayment", "Close"];
@@ -164,7 +164,7 @@ class LetterOfCredit extends Component {
       disableButtons: true
     });
     let currentTime = new Date().toLocaleTimeString().split(":").join('');
-    axios.post(this.config.httpURL+'/InitialApplication', {
+    axios.post(this.config.restServer.httpURL+'/InitialApplication', {
       "$class": "org.acme.loc.InitialApplication",
       "letterId": ("L" + currentTime),
       "applicant": "resource:org.acme.loc.Customer#alice",
@@ -203,7 +203,7 @@ class LetterOfCredit extends Component {
         disableButtons: true
       });
       let letter = "resource:org.acme.loc.LetterOfCredit#" + letterId;
-      axios.post(this.config.httpURL+'/Approve', {
+      axios.post(this.config.restServer.httpURL+'/Approve', {
         "$class": "org.acme.loc.Approve",
         "loc": letter,
         "approvingParty": resourceURL+approvingParty,
@@ -227,7 +227,7 @@ class LetterOfCredit extends Component {
       disableButtons: true
     });
     let letter = "resource:org.acme.loc.LetterOfCredit#" + letterId;
-    axios.post(this.config.httpURL+'/Reject', {
+    axios.post(this.config.restServer.httpURL+'/Reject', {
       "$class": "org.acme.loc.Reject",
       "loc": letter,
       "closeReason": "Letter has been rejected",
@@ -250,7 +250,7 @@ class LetterOfCredit extends Component {
       disableButtons: true
     });
     let letter = "resource:org.acme.loc.LetterOfCredit#" + letterId;
-    axios.post(this.config.httpURL+'/ReadyForPayment', {
+    axios.post(this.config.restServer.httpURL+'/ReadyForPayment', {
       "$class" : "org.acme.loc.ReadyForPayment",
       "loc": letter,
       'beneficiary': "resource:org.acme.loc.Customer#bob",
@@ -273,7 +273,7 @@ class LetterOfCredit extends Component {
       disableButtons: true
     });
     let letter = "resource:org.acme.loc.LetterOfCredit#" + letterId;
-    axios.post(this.config.httpURL+'/Close', {
+    axios.post(this.config.restServer.httpURL+'/Close', {
       "$class": "org.acme.loc.Close",
       "loc": letter,
       "closeReason": "Letter has been completed.",

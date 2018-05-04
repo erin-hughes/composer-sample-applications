@@ -23,7 +23,7 @@ class LoCCard extends Component {
 
   shipProduct(letterId, evidenceHash) {
     let letter = "resource:org.acme.loc.LetterOfCredit#" + letterId;
-    axios.post(this.config.httpURL+'/ShipProduct', {
+    axios.post(this.config.restServer.httpURL+'/ShipProduct', {
       "$class": "org.acme.loc.ShipProduct",
       "loc": letter,
       "evidence": evidenceHash,
@@ -37,7 +37,7 @@ class LoCCard extends Component {
 
   receiveProduct(letterId) {
     let letter = "resource:org.acme.loc.LetterOfCredit#" + letterId;
-    axios.post(this.config.httpURL+'/ReceiveProduct', {
+    axios.post(this.config.restServer.httpURL+'/ReceiveProduct', {
       "$class": "org.acme.loc.ReceiveProduct",
       "loc": letter,
       "transactionId": "",

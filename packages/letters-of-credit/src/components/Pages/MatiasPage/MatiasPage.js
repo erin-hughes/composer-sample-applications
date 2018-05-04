@@ -36,19 +36,19 @@ class MatiasPage extends Component {
 
 	componentDidMount() {
     // open a websocket
-    this.connection = new WebSocket(this.config.webSocketURL);
+    this.connection = new WebSocket(this.config.restServer.webSocketURL);
     this.connection.onmessage = ((evt) => {
       this.getLetters();
     });
 
     let userDetails = {};
-		let cURL = this.config.httpURL+'/BankEmployee/matias';
+		let cURL = this.config.restServer.httpURL+'/BankEmployee/matias';
 		axios.get(cURL)
 		.then(response => {
 			userDetails = response.data;
 		})
 		.then(() => {
-			let bankURL = this.config.httpURL+'/Bank/'+userDetails.bank.split('#')[1];
+			let bankURL = this.config.restServer.httpURL+'/Bank/'+userDetails.bank.split('#')[1];
 			console.log(bankURL);
 			return axios.get(bankURL)
 		})
@@ -71,7 +71,7 @@ class MatiasPage extends Component {
 
   getLetters() {
 		this.setState({gettingLetters: true});
-		axios.get(this.config.httpURL+'/LetterOfCredit')
+		axios.get(this.config.restServer.httpURL+'/LetterOfCredit')
     .then(response => {
       // sort the LOCs by descending ID (will display the most recent first)
 			response.data.sort((a,b) => b.letterId.localeCompare(a.letterId));

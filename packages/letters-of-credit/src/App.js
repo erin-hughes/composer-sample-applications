@@ -6,6 +6,7 @@ import AlicePage from './components/Pages/AlicePage/AlicePage.js';
 import BobPage from './components/Pages/BobPage/BobPage.js';
 import MatiasPage from './components/Pages/MatiasPage/MatiasPage.js';
 import EllaPage from './components/Pages/EllaPage/EllaPage.js';
+import TutorialPage from './components/Pages/TutorialPage/TutorialPage.js';
 
 class App extends Component {
   constructor() {
@@ -48,12 +49,13 @@ class App extends Component {
   render() {
     return (
       <Switch>
+        <Route exact path="/tutorial" render={() => <TutorialPage/>}/>
         <Route exact path="/alice" render={(props) => <AlicePage user={this.state.currentUser} switchUser={this.changeUser} callback={this.goToLetterScreen} {...props}/>}/>
         <Route exact path="/matias" render={(props) => <MatiasPage user={this.state.currentUser} switchUser={this.changeUser} callback={this.goToLetterScreen} {...props}/>}/>
         <Route exact path="/bob" render={(props) => <BobPage user={this.state.currentUser} switchUser={this.changeUser} callback={this.goToLetterScreen} {...props}/>}/>
         <Route exact path="/ella" render={(props) => <EllaPage user={this.state.currentUser} switchUser={this.changeUser} callback={this.goToLetterScreen} {...props}/>}/>
         <Route path="/:name/loc/:id" render={(props) => <LetterOfCredit letter={this.state.currentLetter} callback={this.changeUser} isApply={this.state.isApply} user={this.state.currentUser} {...props}/>}/>
-        <Redirect to="/alice" />
+        <Redirect to="/tutorial" />
       </Switch>
     );
   }
