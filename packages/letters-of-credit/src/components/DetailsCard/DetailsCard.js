@@ -110,10 +110,12 @@ class DetailsCard extends Component {
     let buttonTxt = this.state.editable ? "Save" : "Edit";
 
     return (
-      <div class={containerClasses}>
-        { this.props.canEdit && <button onClick={this.switchEditable.bind((this))}><span>{buttonTxt}</span></button> }
-        <h5>{mainHeadingTxt}</h5>
-        {jsx}
+      <div>
+        <div class={containerClasses}>
+          <h5>{mainHeadingTxt}</h5>
+          {jsx}
+        </div>
+        { this.props.canEdit && <button className="editButton" onClick={this.switchEditable.bind((this))}><span>{buttonTxt}</span></button> }
       </div>
     );
   }

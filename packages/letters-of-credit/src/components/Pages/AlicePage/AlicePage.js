@@ -117,7 +117,7 @@ class AlicePage extends Component {
     		      <span> Change account details </span>
     		      <span> View Transaction History </span>
     		      <span> Make Transaction </span>
-    		      <span className="currentBalance"> Current Balance: ${(this.state.userDetails.balance) ? this.state.userDetails.balance.toLocaleString() : 0} </span>
+    		      <span className="currentBalance"> Current Balance: $15,276 </span>
     		    </div>
     		  </div>
     		  <div id="infoDiv" className="flexDiv infoDiv">

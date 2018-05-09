@@ -9,7 +9,7 @@ class Table extends Component {
   				<span className="locOrdersText"> LETTERS OF CREDIT ORDERS </span>
   				<span className="viewAllText"> View all </span>
   			</div>
-  			<table>
+  			<table className="bankTable">
   				<tbody>
   					<tr className="tableHeaders">
   						<th>Ref number</th>

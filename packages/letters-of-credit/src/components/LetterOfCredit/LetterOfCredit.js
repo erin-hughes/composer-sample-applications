@@ -388,16 +388,17 @@ class LetterOfCredit extends Component {
             <Stepper steps={ [{title: 'Letter Application'}, {title: 'PB\'s Approval'}, {title: 'BoH\'s Approval'}, {title: 'Bob\'s Approval'}, {title: 'Goods Shipped'}, {title: 'Shipment Accepted'}, {title: 'Payment Made'}, {title: 'Letter Closed'}] } activeStep={activeStep} circleFontSize={12} titleFontSize={12} completeColor={"#4880ff"} activeColor={"#b3d5ff"} completeBarColor={"#4880ff"} size={24}/>
           </div>
         </div>
-        <div class="letterContent">
-          <DetailsCard disabled={true} type="Person" data={["Application Request"].concat(Object.values(this.props.applicant))}/>
-          <DetailsCard disabled={true} type="Person" data={["Supplier Request"].concat(Object.values(this.props.beneficiary))}/>
-          <DetailsCard type="Product" data={["Product Details"].concat(Object.values(productDetails))} canEdit={this.state.isApply} user={this.state.user}/>
-        </div>
-        <br/>
-        <div class="rules">
-          <DetailsCard type="Rules" data={rules} canEdit={this.state.isApply}/>
-        </div>
-        <BlockChainDisplay transactions={this.state.transactions}/>
+        <table className="contentTable">
+          <tr>
+            <td className="autofilled"> <DetailsCard disabled={true} type="Person" data={["Application Request"].concat(Object.values(this.props.applicant))}/> </td>
+            <td className="autofilled"> <DetailsCard disabled={true} type="Person" data={["Supplier Request"].concat(Object.values(this.props.beneficiary))}/> </td>
+            <td className="editable"> <DetailsCard type="Product" data={["Product Details"].concat(Object.values(productDetails))} canEdit={this.state.isApply} user={this.state.user}/> </td>
+            <td className="blockchainCell" rowspan="2">  <BlockChainDisplay transactions={this.state.transactions}/> </td>
+          </tr>
+          <tr>
+            <td colspan="3"> <DetailsCard type="Rules" data={rules} canEdit={this.state.isApply}/> </td>
+          </tr>
+        </table>
         {buttonJSX}
         { this.state.disableButtons && <div class="statusMessage"> Please wait... </div> }
       </div>

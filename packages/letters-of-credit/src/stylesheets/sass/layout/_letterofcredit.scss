@@ -1,7 +1,11 @@
+body {
+  background-color: #f5f6fa;
+}
+
 .LCcontainer {
   background-color: #f5f6fa;
   width: 100%;
-  height: -webkit-fill-available;
+  height: 100%;
 
   > br {
     clear: left;
@@ -52,14 +56,21 @@
   }
 }
 
-.letterContent {
-  > div {
-    display: block;
-    float: left;
-    width: 20%;
-    margin: 2%;
-    text-align: left;
+.contentTable {
+  height: 1px;
+  max-height: 500px;
+  width: 95%;
+  margin: 2.5%;
+
+  td {
+    vertical-align: top;
+    padding: 12.5px;
   }
+
+  .blockchainCell {
+    width: 200px;
+  }
+
 }
 
 .rules {
@@ -72,6 +83,7 @@
     list-style-type: none;
     margin: 0;
     padding: 0;
+    color: black;
   }
 }
 
