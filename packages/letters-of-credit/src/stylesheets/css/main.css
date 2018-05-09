@@ -50,7 +50,7 @@
   color: white; }
 
 .aliceWelcomeMessage {
-  font-family: HiraMaruPro-W4;
+  font-family: HiraMaruPro-W4, sans-serif;
   font-weight: lighter;
   font-size: 44px;
   color: #ffffff;
@@ -532,6 +532,11 @@ body {
   max-width: 14%; }
   .LoCCardBob > h3 {
     font-weight: lighter; }
+  .LoCCardBob > .background {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); }
 
 .viewButtonBob {
   margin-top: 5px;
@@ -555,8 +560,7 @@ body {
 
 .shipButtonDiv {
   display: flex;
-  flex-direction: column;
-  margin-top: 10px; }
+  margin-top: 25px; }
 
 .shipButton {
   width: 25px;
@@ -607,7 +611,18 @@ body {
   height: 32%;
   width: 20%;
   background-color: white;
-  font-family: Helvetica Neue; }
+  font-family: Helvetica Neue, sans-serif;
+  justify-content: space-between; }
+  .container > div {
+    height: 100%;
+    position: relative; }
+    .container > div > h3 {
+      text-align: center;
+      color: #2e3e4f; }
+
+.shipContainer {
+  height: 50%;
+  width: 50%; }
 
 .title {
   color: black; }
@@ -618,17 +633,28 @@ body {
 .textMargins {
   margin: 5% 10% 5% 10%; }
 
+.buttonsRow {
+  width: 90%;
+  position: absolute;
+  bottom: 0;
+  margin: 0 0 5% 5%; }
+
 .yesButton {
   border-radius: 30px;
-  border: 1px solid #4880ff;
-  background-color: transparent;
-  color: #4880ff;
   font-size: 85%;
   white-space: nowrap;
   text-align: center;
   float: right; }
 
-.yesButton:hover {
+.yesButton:enabled {
+  border: 1px solid #4880ff;
+  color: #4880ff;
+  background-color: transparent; }
+
+.yesButton:disabled {
+  cursor: not-allowed; }
+
+.yesButton:hover:enabled {
   background-color: #4880ff;
   color: #fff; }
 
@@ -640,6 +666,20 @@ body {
   text-decoration: underline;
   color: #4880ff; }
 
+.files-table {
+  margin: 0 0 0 5%;
+  width: 90%; }
+  .files-table td {
+    margin-left: 5%;
+    border-bottom: 1px solid #ccc;
+    color: #2e3e4f; }
+  .files-table tr :hover {
+    background-color: #fafafa; }
+
+.loadingMessage {
+  color: black;
+  text-align: center; }
+
 .UserDetails {
   text-align: left;
   padding-left: 6vh;
@@ -647,11 +687,11 @@ body {
   color: white;
   font-weight: lighter; }
   .UserDetails > h1 {
-    font-family: HelveticaNeue-Bold;
+    font-family: HelveticaNeue-Bold, sans-serif;
     font-size: 19px; }
   .UserDetails > p {
     margin: 0;
-    font-family: HelveticaNeue; }
+    font-family: HelveticaNeue, sans-serif; }
 
 .userDetailsTextBold {
   font-weight: bold;

@@ -11,6 +11,7 @@
     "react-router-dom": "^4.2.2",
     "react-scripts": "1.1.1",
     "react-stepper-horizontal": "^1.0.10",
+    "react-toggle": "^4.0.2",
     "redux": "^3.7.2"
   },
   "scripts": {

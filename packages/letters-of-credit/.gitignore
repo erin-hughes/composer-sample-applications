@@ -62,3 +62,9 @@ dist/
 
 # composer stuff
 *.card
+
+# install stuff
+fabric-tools
+loc-stage
+.loc-card-store
+letters-of-credit-network.bna

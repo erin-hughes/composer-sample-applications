@@ -297,9 +297,9 @@ class LetterOfCredit extends Component {
     }
 
     let activeStep = 0;
-
     if (this.state.letter.status === 'AWAITING_APPROVAL') {
       if (!this.state.letter.approval.includes('resource:org.acme.loc.BankEmployee#matias')) {
+
         activeStep = 1;
       }
       else if (!this.state.letter.approval.includes('resource:org.acme.loc.BankEmployee#ella')) {
@@ -309,11 +309,16 @@ class LetterOfCredit extends Component {
         activeStep = 3;
       }
     }
-    else if (this.state.letter.status === 'APPROVED' ||
-             this.state.letter.status === 'SHIPPED' ||
-             this.state.letter.status === 'RECEIVED' ||
-             this.state.letter.status === 'CLOSED') {
-      activeStep = 4;
+    else if (this.state.letter.status === 'APPROVED'){
+        activeStep = 4;
+    } else if (this.state.letter.status === 'SHIPPED') {
+      activeStep = 5;
+    } else if (this.state.letter.status === 'RECEIVED'){
+      activeStep = 6;
+    } else if (this.state.letter.status === 'READY_FOR_PAYMENT'){
+      activeStep = 7;
+    } else if (this.state.letter.status === 'CLOSED'){
+      activeStep = 8;
     }
 
     let productDetails = this.props.productDetails;
@@ -373,7 +378,7 @@ class LetterOfCredit extends Component {
         </div>
         <div class="header">
           <div class="stepper">
-            <Stepper steps={ [{title: 'Letter Application'}, {title: 'PB\'s Approval'}, {title: 'BoH\'s Approval'}, {title: 'Bob\'s Approval'}, {title: 'Letter Closed'}] } activeStep={activeStep} circleFontSize={12} titleFontSize={12} completeColor={"#4880ff"} activeColor={"#4880ff"} completeBarColor={"#4880ff"} size={24}/>
+            <Stepper steps={ [{title: 'Letter Application'}, {title: 'PB\'s Approval'}, {title: 'BoH\'s Approval'}, {title: 'Bob\'s Approval'}, {title: 'Goods Shipped'}, {title: 'Shipment Accepted'}, {title: 'Payment Made'}, {title: 'Letter Closed'}] } activeStep={activeStep} circleFontSize={12} titleFontSize={12} completeColor={"#4880ff"} activeColor={"#b3d5ff"} completeBarColor={"#4880ff"} size={24}/>
           </div>
         </div>
         <table className="contentTable">

@@ -59,7 +59,7 @@ class EllaPage extends Component {
 		.catch(error => {
 			console.log(error);
     });
-    
+
     this.getLetters();
 	}
 
@@ -94,10 +94,13 @@ class EllaPage extends Component {
       }
       statusColour = "red";
     }
+    else if (letter.status === 'READY_FOR_PAYMENT'){
+      status = 'Payment Made';
+      statusColour = "blue";
+    }
     else {
       status = letter.status.toLowerCase();
       status = status.charAt(0).toUpperCase() + status.slice(1);
-      status = ((letter.status === 'READY_FOR_PAYMENT') ? status.replace(/_/g, ' ') : status);
 
       if(letter.status === 'CLOSED') {
         statusColour = "green";
