@@ -76,9 +76,9 @@ class DetailsCard extends Component {
             <span class="subheadingSpan, topHeading">TYPE</span>
             { (this.state.editable) ? <input class="subheadingSpan" type="text" onChange={this.handleChange.bind(this, 1)} defaultValue={this.state.data[1]} /> : <span class="subheadingSpan">{this.state.data[1]}</span> }
             <span class="subheadingSpan, topHeading">QUANTITY</span>
-            { (this.state.editable) ? <input class="subheadingSpan" type="text" onChange={this.handleChange.bind(this, 2)} defaultValue={this.state.data[2]} /> : <span class="subheadingSpan">{this.state.data[2] ? this.state.data[2] : "0"}</span> }
+            { (this.state.editable) ? <input class="subheadingSpan" type="number" min="0" onChange={this.handleChange.bind(this, 2)} defaultValue={this.state.data[2]} /> : <span class="subheadingSpan">{this.state.data[2] ? this.state.data[2] : "0"}</span> }
             <span class="subheadingSpan, topHeading">PRICE PER UNIT</span>
-            { (this.state.editable) ? <input class="subheadingSpan" type="text" onChange={this.handleChange.bind(this, 3)} defaultValue={this.state.data[3]} /> : <span class="subheadingSpan">{currency + (this.state.data[3] ? amount : "0")}</span> }
+            { (this.state.editable) ? <input class="subheadingSpan" type="number" min="0" onChange={this.handleChange.bind(this, 3)} defaultValue={this.state.data[3]} /> : <span class="subheadingSpan">{currency + (this.state.data[3] ? amount : "0")}</span> }
             <span class="subheadingSpan, topHeading">TOTAL</span>
             <span class="subheadingSpan">{currency + (this.state.data[2]*amount)}</span>
           </div>

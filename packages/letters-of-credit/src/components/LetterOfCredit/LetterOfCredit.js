@@ -5,6 +5,7 @@ import DetailsCard from '../DetailsCard/DetailsCard.js';
 import BlockChainDisplay from '../BlockChainDisplay/BlockChainDisplay.js';
 import axios from 'axios';
 import { connect } from "react-redux";
+import { getProductDeatils } from "../../actions/actions";
 import Config from '../../utils/config';
 import backButtonIcon from '../../resources/images/left-arrow.svg'
 import Stepper from 'react-stepper-horizontal';
@@ -183,7 +184,13 @@ class LetterOfCredit extends Component {
     .then(() => {
       this.setState({
         disableButtons: false
-      })
+      });
+      this.props.getProductDeatils({
+        type: "",
+        quantity: 0,
+        pricePerUnit: 0,
+        total: 0
+      });
       this.handleOnClick(this.state.user);
     })
     .catch(error => {
@@ -361,7 +368,7 @@ class LetterOfCredit extends Component {
     } else {
       buttonJSX = (
         <div class="actions">
-          <button disabled={this.state.disableButtons} onClick={() => {this.showModal('CREATE')}}>Start approval process</button>
+          <button disabled={this.state.disableButtons || this.props.productDetails.type === "" || this.props.productDetails.quantity === 0 || this.props.productDetails.pricePerUnit === 0} onClick={() => {this.showModal('CREATE')}}>Start approval process</button>
         </div>
       );
     }
@@ -408,4 +415,10 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps)(LetterOfCredit);
+const mapDispatchToProps = dispatch => {
+  return {
+    getProductDeatils: productDetails => dispatch(getProductDeatils(productDetails))
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(LetterOfCredit);

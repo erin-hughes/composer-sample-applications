@@ -308,6 +308,7 @@ body {
 
 .contentTable {
   height: 1px;
+  max-height: 500px;
   width: 95%;
   margin: 2.5%; }
   .contentTable td {
@@ -333,16 +334,19 @@ body {
   justify-content: flex-end; }
   .actions > button {
     border-radius: 30px;
-    border: 1px solid #4880ff;
-    background-color: transparent;
-    color: #4880ff;
     padding: 0.7% 1.2% 0.7% 1.2%;
     margin: 0 1% 1% 0;
     font-weight: 500;
     white-space: nowrap;
     text-align: center;
     z-index: 99999999; }
-  .actions > button:hover {
+  .actions > button:enabled {
+    border: 1px solid #4880ff;
+    background-color: transparent;
+    color: #4880ff; }
+  .actions > button:disabled {
+    cursor: not-allowed; }
+  .actions > button:enabled:hover {
     background-color: #4880ff;
     color: #fff; }
 
@@ -410,7 +414,7 @@ body {
   overflow-y: auto;
   display: flex;
   flex-direction: column-reverse;
-  height: 500px;
+  height: 100%;
   width: 200px; }
 
 .greyBlock {
