@@ -1,13 +1,9 @@
 .BlockChainDisplay {
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  top: 16%;
   overflow-y: auto;
   display: flex;
   flex-direction: column-reverse;
-  padding-right: 5%;
   height: 500px;
+  width: 200px;
 }
 
 .greyBlock {
