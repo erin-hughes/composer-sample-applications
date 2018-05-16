@@ -31,6 +31,7 @@ class AlicePage extends Component {
 
 	componentDidMount() {
 		// open a websocket
+		document.title = "Alice - Bank of Dinero";
 		this.connection = new WebSocket(this.config.restServer.webSocketURL);
 		this.connection.onmessage = ((evt) => {
 			this.getLetters();

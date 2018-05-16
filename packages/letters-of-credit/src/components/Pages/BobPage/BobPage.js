@@ -30,6 +30,7 @@ class BobPage extends Component {
 
 	componentDidMount() {
 		// open a websocket
+		document.title = "Bob - Eastwood Banking";
 		this.connection = new WebSocket(this.config.restServer.webSocketURL);
 		this.connection.onmessage = ((evt) => {
 				this.getLetters();
