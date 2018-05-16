@@ -130,6 +130,7 @@ class LoCCard extends Component {
     }
     let statusMessage = this.generateStatus(letter);
     let shippingText;
+    let checked = letter.status !== 'APPROVED';
     //generate accepted LoC cards
     if (user === 'bob') {
       if (letter.status !== 'AWAITING_APPROVAL') {
@@ -151,7 +152,7 @@ class LoCCard extends Component {
               <p>{statusMessage}</p>
               <p>{'Product Type: ' + letter.productDetails.productType}</p>
               <div className = "shipButtonDiv">
-                <Toggle className='bobToggle' defaultChecked={this.state.toggleChecked} onChange={this.showModal} disabled ={this.state.toggleDisabled} />
+                <Toggle className='bobToggle' checked={checked} defaultChecked={this.state.toggleChecked} onChange={this.showModal} disabled ={this.state.toggleDisabled} />
                 <span className="shipText">{shippingText}</span>
               </div>
               <div>

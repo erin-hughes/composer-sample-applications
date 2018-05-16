@@ -690,7 +690,9 @@ body {
 
 .loadingMessage {
   color: black;
-  text-align: center; }
+  text-align: left;
+  padding-left: 5%;
+  padding-top: 0.5%; }
 
 .checkboxContainer input {
   visibility: hidden;
