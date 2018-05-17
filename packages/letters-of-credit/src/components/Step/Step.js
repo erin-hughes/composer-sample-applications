@@ -27,8 +27,10 @@ class Step extends Component {
         <div className="stepContainer">
           <div className="stepInfo">
             <div className="stepInfoMessage">
-              {this.state.stepMessage}
+              <p className="stepNumberText">Step {this.state.stepNumber + 1}</p><br/>
+              <p className="stepMessageText">{this.state.stepMessage}</p>
             </div>
+            <div className="stepInfoTick"/>
           </div>
           <div className="nodeContainer">
             <div className={firstConnectorClass}/>

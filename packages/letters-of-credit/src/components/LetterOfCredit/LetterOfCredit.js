@@ -168,7 +168,7 @@ class LetterOfCredit extends Component {
     let currentTime = new Date().toLocaleTimeString().split(":").join('');
     axios.post(this.config.restServer.httpURL+'/InitialApplication', {
       "$class": "org.acme.loc.InitialApplication",
-      "letterId": ("L" + currentTime),
+      "letterId": ("L999999"),
       "applicant": "resource:org.acme.loc.Customer#alice",
       "beneficiary": "resource:org.acme.loc.Customer#bob",
       "rules": this.createRules(),
@@ -387,7 +387,7 @@ class LetterOfCredit extends Component {
         <div class="header">
 
             <Stepper steps= {['Letter Application','PB\'s Approval','BoH\'s Approval','Bob\'s Approval','Goods Shipped','Shipment Accepted','Payment Made','Letter Closed']} activeStep = {activeStep}/>
-        
+
         </div>
         <table className="contentTable">
           <tr>
