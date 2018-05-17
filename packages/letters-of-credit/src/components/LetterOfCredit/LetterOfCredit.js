@@ -168,7 +168,7 @@ class LetterOfCredit extends Component {
     let currentTime = new Date().toLocaleTimeString().split(":").join('');
     axios.post(this.config.restServer.httpURL+'/InitialApplication', {
       "$class": "org.acme.loc.InitialApplication",
-      "letterId": ("L999999"),
+      "letterId": ("L"),
       "applicant": "resource:org.acme.loc.Customer#alice",
       "beneficiary": "resource:org.acme.loc.Customer#bob",
       "rules": this.createRules(),
@@ -385,23 +385,21 @@ class LetterOfCredit extends Component {
           <p class="username-txt">{(this.state.user.charAt(3) === 'i') ? 'Matías' : this.state.user.charAt(0).toUpperCase() + this.state.user.slice(1)}</p>
         </div>
         <div class="header">
-
-            <Stepper steps= {['Letter Application','PB\'s Approval','BoH\'s Approval','Bob\'s Approval','Goods Shipped','Shipment Accepted','Payment Made','Letter Closed']} activeStep = {activeStep}/>
-
+          <Stepper steps= {['Letter Application','BoD\'s Approval','EB\'s Approval','Bob\'s Approval','Goods Shipped','Shipment Accepted','Payment Made','Letter Closed']} activeStep={activeStep}/>
         </div>
-        <table className="contentTable">
-          <tr>
-            <td className="autofilled"> <DetailsCard disabled={true} type="Person" data={["Application Request"].concat(Object.values(this.props.applicant))}/> </td>
-            <td className="autofilled"> <DetailsCard disabled={true} type="Person" data={["Supplier Request"].concat(Object.values(this.props.beneficiary))}/> </td>
-            <td className="editable"> <DetailsCard type="Product" data={["Product Details"].concat(Object.values(productDetails))} canEdit={this.state.isApply} user={this.state.user}/> </td>
-            <td className="blockchainCell" rowspan="2">  <BlockChainDisplay transactions={this.state.transactions}/> </td>
-          </tr>
-          <tr>
-            <td colspan="3"> <DetailsCard type="Rules" data={rules} canEdit={this.state.isApply}/> </td>
-          </tr>
-        </table>
-        {buttonJSX}
-        { this.state.disableButtons && <div class="statusMessage"> Please wait... </div> }
+          <table className="contentTable">
+            <tr>
+              <td className="autofilled"> <DetailsCard disabled={true} type="Person" data={["Application Request"].concat(Object.values(this.props.applicant))}/> </td>
+              <td className="autofilled"> <DetailsCard disabled={true} type="Person" data={["Supplier Request"].concat(Object.values(this.props.beneficiary))}/> </td>
+              <td className="editable"> <DetailsCard type="Product" data={["Product Details"].concat(Object.values(productDetails))} canEdit={this.state.isApply} user={this.state.user}/> </td>
+              <td className="blockchainCell" rowspan="2">  <BlockChainDisplay transactions={this.state.transactions}/> </td>
+            </tr>
+            <tr>
+              <td colspan="3"> <DetailsCard type="Rules" data={rules} canEdit={this.state.isApply}/> </td>
+            </tr>
+          </table>
+          {buttonJSX}
+          { this.state.disableButtons && <div class="statusMessage"> Please wait... </div> }
       </div>
     );
   }

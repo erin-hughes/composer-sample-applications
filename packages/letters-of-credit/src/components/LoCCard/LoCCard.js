@@ -12,7 +12,6 @@ import Modal from '../Modal/Modal.js';
 class LoCCard extends Component {
   constructor(props) {
 		super(props);
-
 		this.state = {
       redirect: false,
       showModal: false,
@@ -104,7 +103,7 @@ class LoCCard extends Component {
           <div>
             <h3>{newMessage}</h3>
             <h3>{'Ref: ' + letter.letterId}</h3>
-            Participants: <b>{'Alice, Penguin Banking, Bob, Bank of Hursley'}</b><br/><br/>
+            Participants: <b>{'Alice, Bank of Dinero, Bob, Eastwood Banking'}</b><br/><br/>
             Product Type: <b>{letter.productDetails.productType}</b>
             <div>
               <img class="viewButtonBob" src={viewButtonIconBob} alt="View Letter of Credit" onClick={() => this.handleOnClick()}/>
@@ -118,7 +117,7 @@ class LoCCard extends Component {
         <div className = "LoCCard">
           <div>
             <h3>{'Ref: ' + letter.letterId}</h3>
-            Participants: <b>{'Alice, Penguin Banking, Bob, Bank of Hursley'}</b><br/><br/>
+            Participants: <b>{'Alice, Bank of Dinero, Bob, Eastwood Banking'}</b><br/><br/>
             Product Type: <b>{letter.productDetails.productType}</b><p></p>
             <button className="viewButton" onClick={() => this.handleOnClick()}>
               <div className = "viewButtonImage">
