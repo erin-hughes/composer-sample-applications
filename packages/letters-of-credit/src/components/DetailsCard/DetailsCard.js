@@ -108,6 +108,7 @@ class DetailsCard extends Component {
     }
 
     let buttonTxt = this.state.editable ? "Save" : "Edit";
+    let editButtonStyle = this.state.editable ? { float: 'right' } : {};
 
     return (
       <div className="outerDiv">
@@ -115,7 +116,7 @@ class DetailsCard extends Component {
           <h5>{mainHeadingTxt}</h5>
           {jsx}
         </div>
-        { this.props.canEdit && <button className="editButton" onClick={this.switchEditable.bind((this))}><span>{buttonTxt}</span></button> }
+        { this.props.canEdit && <button className="editButton" onClick={this.switchEditable.bind((this))}><span style={editButtonStyle}>{buttonTxt}</span></button> }
       </div>
     );
   }

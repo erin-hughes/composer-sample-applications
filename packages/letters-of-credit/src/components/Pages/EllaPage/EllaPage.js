@@ -35,6 +35,7 @@ class EllaPage extends Component {
 
 	componentDidMount() {
     // open a websocket
+    document.title = "Ella - Eastwood Banking";
     this.connection = new WebSocket(this.config.restServer.webSocketURL);
     this.connection.onmessage = ((evt) => {
       this.getLetters();

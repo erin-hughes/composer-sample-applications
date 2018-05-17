@@ -58,6 +58,12 @@ class LetterOfCredit extends Component {
     this.setState({redirect: true, redirectTo: user});
   }
 
+  componentDidMount() {
+    let user = this.props.match.params.name;
+    let id = this.props.match.params.id;
+    document.title = user.charAt(0).toUpperCase() + user.substr(1) + " - " + (id === "create" ? "Create LoC" : id);
+  }
+
   componentWillMount() {
     axios.get(this.config.restServer.httpURL+'/system/historian')
     .then((response) => {

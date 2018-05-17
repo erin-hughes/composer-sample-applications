@@ -36,6 +36,7 @@ class MatiasPage extends Component {
 
 	componentDidMount() {
     // open a websocket
+    document.title = "Matías - Bank of Dinero";
     this.connection = new WebSocket(this.config.restServer.webSocketURL);
     this.connection.onmessage = ((evt) => {
       this.getLetters();
