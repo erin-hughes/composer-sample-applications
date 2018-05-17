@@ -787,3 +787,104 @@ body {
   color: #a0066f;
   border-right: 1px solid grey;
   font-weight: bold; }
+
+.stepContainer {
+  height: 90px;
+  width: 145px; }
+
+.activeStep {
+  box-sizing: border-box;
+  border: 6px solid #ffffff;
+  background-color: #477fff;
+  height: 25px;
+  width: 25px;
+  border-radius: 50%;
+  z-index: 1;
+  box-shadow: 0 0px 10px #989898;
+  z-index: 2; }
+
+.completedStep {
+  background-color: #477fff;
+  height: 25px;
+  width: 25px;
+  border-radius: 50%;
+  box-shadow: 0 0px 4px #989898;
+  z-index: 2; }
+
+.uncompletedStep {
+  box-sizing: border-box;
+  border: 4px solid #e4e4e4;
+  height: 25px;
+  width: 25px;
+  border-radius: 50%;
+  z-index: 2; }
+
+.stepInfo {
+  height: 70px;
+  width: 145px;
+  margin: 0 auto;
+  z-index: 10;
+  text-align: center; }
+
+.stepInfoMessage {
+  position: relative;
+  border: 2px solid #e4e4e4;
+  background-color: #ffffff;
+  height: 55px;
+  width: 145px;
+  margin-bottom: 30px;
+  margin: 0 auto;
+  text-align: center;
+  box-shadow: 0 0 20px rgba(220, 220, 220, 0.5);
+  border-radius: 4px;
+  z-index: 1;
+  line-height: 25px; }
+
+.stepInfoTick {
+  position: relative;
+  bottom: 2px;
+  width: 0;
+  height: 0;
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-top: 10px solid #ffffff;
+  margin-left: 66.5px;
+  margin-bottom: 26px;
+  z-index: 2; }
+
+.nodeContainer {
+  display: flex;
+  align-items: center; }
+
+.stepConnector {
+  height: 4px;
+  background-color: #e4e4e4;
+  width: 60px;
+  z-index: 1; }
+
+.blankStepConnector {
+  width: 60px; }
+
+.blankStepInfo {
+  height: 70px;
+  width: 20px;
+  display: flex;
+  margin: 0 auto;
+  z-index: 10; }
+
+.stepNumberText {
+  position: relative;
+  top: 3px;
+  display: inline;
+  color: #c7c7c7;
+  font-family: Open Sans;
+  font-size: 10pt; }
+
+.stepMessageText {
+  display: inline;
+  font-family: Open Sans;
+  font-size: 10pt; }
+
+.Stepper {
+  display: flex;
+  margin-top: 20px; }
