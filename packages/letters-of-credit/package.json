@@ -19,7 +19,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
-    "deployNetwork": "composer runtime install --card PeerAdmin@hlfv1 --businessNetworkName letters-of-credit-network && composer network start --card PeerAdmin@hlfv1 --networkAdmin admin --networkAdminEnrollSecret adminpw --archiveFile *.bna --file networkadmin.card && composer-rest-server -c admin@letters-of-credit-network -n never -w true && composer-rest-server -c admin@letters-of-credit-network -n never -w true"
+    "deployNetwork": "composer runtime install --card PeerAdmin@hlfv1 --businessNetworkName letters-of-credit-network && composer network start --card PeerAdmin@hlfv1 --networkAdmin admin --networkAdminEnrollSecret adminpw --archiveFile *.bna --file networkadmin.card && composer-rest-server -c admin@letters-of-credit-network -n never -w true"
   },
   "devDependencies": {
     "gulp": "^3.9.1",

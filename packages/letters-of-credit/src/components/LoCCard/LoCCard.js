@@ -3,8 +3,6 @@ import { Redirect } from 'react-router-dom';
 import Config from '../../utils/config';
 import '../../stylesheets/css/main.css';
 import axios from 'axios';
-import viewButtonIconAlice from '../../resources/images/viewLocIcon.png';
-import viewButtonIconBob from '../../resources/images/viewLocIconBob.png';
 import Toggle from 'react-toggle';
 import "react-toggle/style.css";
 import Modal from '../Modal/Modal.js';
@@ -140,6 +138,10 @@ class LoCCard extends Component {
         shippingText = "Ship Product";
         if (letter.status !== 'APPROVED'){
           idStyle = "LoCCardBobAccepted";
+          // this.setState({
+          //   toggleChecked: true,
+          //   toggleDisabled: true
+          // });
           this.state.toggleChecked = true;
           this.state.toggleDisabled = true;
           shippingText = "Product Shipped";
@@ -166,6 +168,10 @@ class LoCCard extends Component {
         // generating a hash from the timestamp
         shippingText = "Receive Product";
         if (letter.status !== 'SHIPPED') {
+          // this.setState({
+          //   toggleChecked: true,
+          //   toggleDisabled: true
+          // });
           this.state.toggleChecked = true;
           this.state.toggleDisabled = true;
           shippingText = "Product Received";

@@ -21,17 +21,6 @@
   height: 10vh;
 }
 
-.bobUsername:before {
-  content: "";
-  height: 7.5px;
-  width: 7.5px;
-  border: 1px solid #bc5183;
-  border-radius: 15px;
-  background-color: #bc5183;
-  display: inline-block;
-  margin-right: 5px;
-}
-
 .bobUsername {
   float: left;
   margin: 30px;
@@ -39,6 +28,17 @@
   font-size: 90%;
   color: white;
   text-decoration: none;
+
+  &:before {
+    content: "";
+    height: 7.5px;
+    width: 7.5px;
+    border: 1px solid #bc5183;
+    border-radius: 15px;
+    background-color: #bc5183;
+    display: inline-block;
+    margin-right: 5px;
+  }
 }
 
 .infoDivBob {

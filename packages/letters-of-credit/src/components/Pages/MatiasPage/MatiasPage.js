@@ -4,7 +4,6 @@ import { Redirect } from 'react-router-dom';
 import axios from 'axios';
 import Table from '../../Table/Table.js';
 import Config from '../../../utils/config';
-import matiasUsernameIcon from '../../../resources/images/viewLocIcon.png';
 
 class MatiasPage extends Component {
   constructor(props) {
@@ -123,9 +122,6 @@ class MatiasPage extends Component {
       company = "Conga Computers";
     }
     let status = this.generateStatus(this.state.letters[i]);
-    let statusStyle = {
-      backgroundColor: status.statusColour
-    }
     return (
 			<tr className="row" onClick={() => this.openLetter(i) }>
 				<td className="blueText">{this.state.letters[i].letterId}</td>

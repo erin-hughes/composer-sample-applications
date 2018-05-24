@@ -27,7 +27,7 @@
   border-radius: 5px;
   box-shadow: 3px 6px 10px rgba(0, 0, 0, 0.15);
   background-color: #4d4f75;
- 
+
   > p {
     color: white;
     font-weight: 300;
@@ -36,13 +36,12 @@
     margin-left: 7.5px;
     margin-right: 5px;
     font-size: 10pt;
-    
+
     > b {
       font-weight: 500;
     }
-  
   }
-  
+
   > button {
     padding: 0;
     padding-bottom: 3px;
@@ -54,11 +53,9 @@
     border: none;
     color: white;
     font-size: large;
-  
-  }
-  
-  > button:disabled {
-    cursor: default;
-  }
 
+    &:disabled {
+      cursor: default;
+    }
+  }
 }

@@ -123,9 +123,6 @@ class EllaPage extends Component {
         company = "Conga Computers"
       }
       let status = this.generateStatus(this.state.letters[i]);
-      let statusStyle = {
-        backgroundColor: status.statusColour
-      }
       return (
 		  	<tr onClick={() => this.openLetter(i)}>
 		  		<td className="purpleText">{this.state.letters[i].letterId}</td>

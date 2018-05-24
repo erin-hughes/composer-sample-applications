@@ -6,7 +6,6 @@ import UserDetails from '../../UserDetails/UserDetails.js';
 import LoCCard from '../../LoCCard/LoCCard.js';
 import LoCApplyCard from '../../LoCCard/LoCApplyCard.js';
 import Config from '../../../utils/config';
-import aliceUsernameIcon from '../../../resources/images/viewLocIcon.png';
 
 class AlicePage extends Component {
   constructor(props) {
