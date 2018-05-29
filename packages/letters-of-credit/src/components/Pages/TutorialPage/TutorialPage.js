@@ -20,10 +20,10 @@ class TutorialPage extends Component {
                 <div id="contents" >
                     <h1>Letters of Credit Tutorial</h1>
                     <ul>
-                        <li>
+                        <li className="top-level" >
                             <a href="#scenario" >Scenario</a>
                         </li>
-                        <li>
+                        <li className="top-level parent" >
                             <a href="#tutorial" >Tutorial</a>
                             <ul>
                                 <li>
@@ -55,8 +55,11 @@ class TutorialPage extends Component {
                                 </li>
                             </ul>
                         </li>
-                        <li>
-                            <a href="#tutorial" >Tutorial</a>
+                        <li className="top-level" >
+                            <a href="#benefitofblockchain" >Benefit of blockchain</a>
+                        </li>
+                        <li className="top-level" >
+                            <a href="#nextsteps" >Next Steps</a>
                         </li>
                     </ul>
                 </div>
@@ -76,7 +79,7 @@ class TutorialPage extends Component {
 
                     <p>The above participants have varying roles in the scenario with Alice playing the <em>applicant</em>, Bob the <em>beneficiary</em>, Matías the <em>issuing bank</em> and Ella the <em>exporter bank</em>.</p>
 
-                    <p>In the scenario that this sample covers Alice and Bob have agreed that Alice will purchase computers from Bob's next shipment and have agreed a price for these. Alice unfortunately does not have enough money in her account to cover the entire cost of the purchase and therefore she is requesting a letter of credit to cover this cost from her Bank, Bank of Dinero. This sample will cover how this letter of credit is tracked using blockchain.</p>
+                    <p>In the scenario that this sample covers Alice and Bob have agreed that Alice will purchase computers from Bob's next shipment (due to arrive in 14 days) and have agreed a price for these. Alice unfortunately does not have enough money in her account to cover the entire cost of the purchase and therefore she is requesting a letter of credit to cover this cost from her Bank, Bank of Dinero. This sample will cover how this letter of credit is tracked using blockchain.</p>
 
                     <h1 id="tutorial">Tutorial</h1>
 
@@ -92,7 +95,11 @@ class TutorialPage extends Component {
 
                     <p>Update the product details using the <strong>edit</strong> button. Enter <span class="code">computers</span> for the type, <span class="code">100</span> for the quantity and <span class="code">1200</span> for the price per unit. Click <strong>save</strong> to confirm your changes.</p>
 
-                    <p>Review the terms and conditions then confirm the request for a letter of credit by clicking <strong>Start approval process</strong> and pressing <strong>Yes</strong> to the modal warning that Alice is agreeing to the terms of the letter and that it will be sent to her bank for approval.</p>
+                    <p>Update the terms and conditions to suit the scenario using the <strong>edit</strong> button and then change the second term to <span class="code">14</span> days. Press the <strong>save</strong> button to confirm the changes.</p>
+
+                    <p>Confirm the request for a letter of credit by clicking <strong>Start approval process</strong> and pressing <strong>Yes</strong> to the modal warning that Alice is agreeing to the terms of the letter and that it will be sent to her bank for approval.</p>
+
+                    <p>On Alice's screen you should now see a card containing the letter of credit.</p>
 
                     <p><strong>NOTE:</strong> For the purpose of this sample the details of Bob are prefilled in for the letter of credit.</p>
 
@@ -101,6 +108,8 @@ class TutorialPage extends Component {
                     <p>Now that the letter of credit request has been sent, Matías must review it and accept or reject the application in his role at the Bank of Dinero.</p>
 
                     <p>Navigate to Matías' screen and you will see that there is a new request for a letter of credit from Alice Hamilton. Click on the request to view it in full.</p>
+
+                    <p>Within the letter of credit screen the bar at the top show Matías the current status of the letter. On the right hand side of the screen Matías is able to see the history stored in the blockchain of the letter of credit.</p> 
 
                     <p>Review the letter of credit request and accept the application by clicking <strong>I accept the application</strong> and pressing <strong>Yes</strong> to the modal warning that Matías is agreeing to the terms of the letter and that it will be sent to the exporting bank for their approval.</p>
 
@@ -156,6 +165,15 @@ class TutorialPage extends Component {
 
                     <p>On Bob's screen review his bank balance to ensure that the payment has been made.</p>
 
+                    <h1 id="benefitofblockchain">Benefit of blockchain</h1>
+
+                    <ul>
+                        <li><strong>Clarity</strong> - Using blockchain there is a single source for each participant to get data on the letter of credit. This means all participants have the same up to date view of the status of the letter.</li>
+
+                        <li><strong>Speed</strong> - Each participant can update the letter when they are required without the need for back and forth messages with other participants to ensure that they have the latest details about the letter.</li>
+
+                        <li><strong>Security</strong> - With a single source of truth participants can see the entire history of other participants' actions around letters of credit. Using this they can perform risk analysis to decide whether or not to approve a letter of credit relating to them.</li> 
+                    </ul>
                     <h1 id="nextsteps">Next steps</h1>
 
                     <p>This sample works using <a target="_blank" href={this.config.playground.docURL}>{this.config.playground.name}</a>. Check out the model and business logic behind this sample <a target="_blank" href={this.config.playground.deployedURL}>here</a>, or browse the generated REST APIs <a target="_blank" href={this.config.restServer.explorer}>here</a>.</p>

@@ -38,18 +38,52 @@ $top: 75px;
             li {
                 padding: 15px 0;
                 font-weight: 600;
+                position: relative;
 
                 ul {
                     li {
                         font-weight: 400;
                         margin-left: 25px;
+                        position: relative;
+
+                        &:hover {
+                            &::after {
+                                content: '';
+                                background-color: rgba(63,85,175,0.3);
+                                position: absolute;
+                                width: calc(100% + 125px);
+                                height: 100%;
+                                left: -75px;
+                                top: 0px;
+                                pointer-events: none;
+                            }
+                        }
 
                         &:first-of-type {
                             margin-top: 10px;
                         }
+                    }
+                }
 
-                        &:last-of-type {
-                            padding-bottom: 0;
+                &.top-level {
+                    & >a:hover {
+                        &::after {
+                            content: '';
+                            background-color: rgba(63,85,175,0.3);
+                            position: absolute;
+                            width: calc(100% + 100px);
+                            height: 10pt;
+                            left: -50px;
+                            top: 0px;
+                            padding: 15px 0 21px 0;
+                            pointer-events: none;
+                        }
+                    }
+
+                    &.parent {
+
+                        + .top-level {
+                            margin-top: -15px;
                         }
                     }
                 }
@@ -59,6 +93,8 @@ $top: 75px;
         a {
             color: #19273C;
             text-decoration: none;
+            display: inline-block;
+            width: 100%;
         }
         a:visited {
             color: #19273C;
@@ -93,8 +129,16 @@ $top: 75px;
             }
         }
     
-        p {
+        p, li {
             font-size: 10pt;
+        }
+
+        ul {
+            padding-left: 0;
+            li {
+                list-style-type: none;
+                margin-bottom: 10pt;
+            }
         }
     
         .code {
