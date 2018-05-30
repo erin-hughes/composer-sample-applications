@@ -174,7 +174,7 @@ docker run \
   --network composer_default \
   -v $(pwd)/.loc-card-store:/home/composer/.composer \
   hyperledger/composer-cli:latest \
-  transaction submit -c admin@letters-of-credit-network -d '{"$class": "org.acme.loc.CreateDemoParticipants"}'
+  transaction submit -c admin@letters-of-credit-network -d '{"$class": "org.example.loc.CreateDemoParticipants"}'
 
 # SET CORRECT PERMISSIONS
 docker exec \
