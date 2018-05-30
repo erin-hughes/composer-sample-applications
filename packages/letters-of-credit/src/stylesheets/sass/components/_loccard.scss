@@ -151,6 +151,10 @@
 .toggleContainer {
   display: flex;
   margin-top: 25px;
+
+  &.hide {
+    opacity: 0;
+  }
 }
 
 .shipText {
