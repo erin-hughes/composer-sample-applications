@@ -148,8 +148,7 @@ docker run \
   hyperledger/composer-cli:latest \
   network install -c PeerAdmin@hlfv1 -a letters-of-credit-network.bna
 
-# NETWORK_VERSION=$(grep -o '"version": *"[^"]*"' $ROOT/node_modules/letters-of-credit-network/package.json | grep -o '[0-9]\.[0-9]\.[0-9]')
-NETWORK_VERSION='0.2.4'
+NETWORK_VERSION=$(grep -o '"version": *"[^"]*"' $ROOT/node_modules/letters-of-credit-network/package.json | grep -o '[0-9]\.[0-9]\.[0-9]')
 
 # START THE BNA
 docker run \
