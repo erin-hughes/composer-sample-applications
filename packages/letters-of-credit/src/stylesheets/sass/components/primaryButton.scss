@@ -1,0 +1,23 @@
+.primaryButton {
+    border-radius: 30px;
+    font-size: 85%;
+    white-space: nowrap;
+    text-align: center;
+    float: right;
+}
+
+.primaryButton:enabled {
+    background-color: #4880ff;
+    color: #ffffff;
+    border: 1px solid #4880ff;
+}
+
+.primaryButton:disabled {
+    cursor: not-allowed;
+}
+
+.primaryButton:hover:enabled {
+    border: 1px solid #4880ff;
+    color: #4880ff;
+    background-color: transparent;
+}

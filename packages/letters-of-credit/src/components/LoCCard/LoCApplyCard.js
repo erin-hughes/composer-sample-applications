@@ -25,7 +25,7 @@ class LoCApplyCard extends Component {
         <h2>{this.props.user === 'alice' ? 'Letter of Credit Application' : 'Letter of Credit Applications'}</h2>
         <p>A letter of credit is issued by a bank to another bank (especially one in a different country) to serve as a guarantee for payments made to a specified person under specified conditions.</p>
         {this.props.user === 'alice' && 
-          <button className="viewButton applyButton" onClick={() => this.handleOnClick()}>Apply for a Letter of Credit</button>
+          <button className="applyButton" onClick={() => this.handleOnClick()}>Apply for a Letter of Credit</button>
         }
       </div>
     );

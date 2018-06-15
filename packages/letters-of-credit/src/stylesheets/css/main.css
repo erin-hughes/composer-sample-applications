@@ -463,27 +463,16 @@ td {
   display: flex;
   justify-content: flex-end; }
   .actions > button {
-    border-radius: 30px;
     padding: 10px 20px;
     margin-right: 10px;
     font-weight: 500;
-    white-space: nowrap;
-    text-align: center;
     z-index: 99999999; }
-  .actions > button:enabled {
-    background-color: #4880ff;
-    color: #fff;
-    border: 1px solid #4880ff; }
-  .actions > button:disabled {
+  .actions > button:nth-child(2):disabled {
     cursor: not-allowed;
     background-color: transparent;
     border-color: black;
     color: black;
     opacity: 0.3; }
-  .actions > button:enabled:hover {
-    border: 1px solid #4880ff;
-    background-color: transparent;
-    color: #4880ff; }
 
 .statusMessage {
   margin: 2.5%; }
@@ -738,7 +727,10 @@ td {
   border: 1px solid #fc6a66;
   padding: 8px 20px;
   margin-top: 23px;
-  border-radius: 20px; }
+  margin-left: -5px;
+  border-radius: 20px;
+  color: white;
+  font-size: 10pt; }
 
 .buttonText:before {
   content: "";
@@ -999,92 +991,35 @@ td {
 .checkmark {
   margin-right: 8px; }
 
-.UserDetails {
-  font-size: 10pt;
-  text-align: left;
-  padding-left: 60px;
-  padding-bottom: 50px;
-  color: white;
-  font-weight: 300; }
-  .UserDetails > h2 {
-    font-size: 19px;
-    font-weight: 300; }
-  .UserDetails > div {
-    margin-bottom: 10px; }
-    .UserDetails > div > b {
-      font-weight: 500; }
+.primaryButton {
+  border-radius: 30px;
+  font-size: 85%;
+  white-space: nowrap;
+  text-align: center;
+  float: right; }
 
-.userDetailsTextBold {
-  font-weight: bold;
-  display: inline; }
+.primaryButton:enabled {
+  background-color: #4880ff;
+  color: #ffffff;
+  border: 1px solid #4880ff; }
 
-.ellaTable > .headerBar {
-  border: 1px solid #e8e9eb;
-  background-color: #f6f8fb;
-  line-height: 3; }
-  .ellaTable > .headerBar > .locOrdersText {
-    margin-left: 55px; }
+.primaryButton:disabled {
+  cursor: not-allowed; }
 
-.ellaTable > .bankTable {
-  width: 100%;
-  margin: 30px 0;
-  border-collapse: collapse; }
-  .ellaTable > .bankTable > tbody > tr:not(:first-of-type):hover {
-    cursor: pointer;
-    background-color: #f6f8fb;
-    outline-color: #e8e9eb; }
-    .ellaTable > .bankTable > tbody > tr:not(:first-of-type):hover > td {
-      color: #a0066f; }
-  .ellaTable > .bankTable > tbody > tr {
-    outline: 1px solid transparent; }
-    .ellaTable > .bankTable > tbody > tr > th {
-      text-align: left;
-      height: 50px; }
-    .ellaTable > .bankTable > tbody > tr > th:nth-child(1) {
-      padding-left: 55px; }
-    .ellaTable > .bankTable > tbody > tr > td {
-      padding-left: 0;
-      font-weight: 500;
-      font-size: 12pt;
-      color: #999; }
-    .ellaTable > .bankTable > tbody > tr > td:nth-child(1) {
-      font-weight: 500;
-      text-decoration: underline;
-      padding-left: 55px; }
+.primaryButton:hover:enabled {
+  border: 1px solid #4880ff;
+  color: #4880ff;
+  background-color: transparent; }
 
-.matiasTable > .headerBar {
-  border: 1px solid #e8e9eb;
-  background-color: #f6f8fb;
-  line-height: 3; }
-  .matiasTable > .headerBar > .locOrdersText {
-    margin-left: 55px; }
-
-.matiasTable > .bankTable {
-  width: 100%;
-  margin: 30px 0;
-  border-collapse: collapse; }
-  .matiasTable > .bankTable > tbody > tr:not(:first-of-type):hover {
-    cursor: pointer;
-    background-color: #f6f8fb;
-    outline-color: #e8e9eb; }
-    .matiasTable > .bankTable > tbody > tr:not(:first-of-type):hover > td {
-      color: #3b34c4; }
-  .matiasTable > .bankTable > tbody > tr {
-    outline: 1px solid transparent; }
-    .matiasTable > .bankTable > tbody > tr > th {
-      text-align: left;
-      height: 50px; }
-    .matiasTable > .bankTable > tbody > tr > th:nth-child(1) {
-      padding-left: 55px; }
-    .matiasTable > .bankTable > tbody > tr > td {
-      padding-left: 0;
-      font-weight: 500;
-      font-size: 12pt;
-      color: #999; }
-    .matiasTable > .bankTable > tbody > tr > td:nth-child(1) {
-      font-weight: 500;
-      text-decoration: underline;
-      padding-left: 55px; }
+.secondaryButton {
+  padding-top: 2.5px;
+  border: none;
+  background: none;
+  font-size: 85%;
+  text-decoration: underline;
+  color: #4880ff;
+  float: right;
+  vertical-align: middle; }
 
 .stepContainer {
   position: relative; }
@@ -1190,6 +1125,93 @@ td {
 .Stepper {
   display: flex;
   margin-top: 20px; }
+
+.ellaTable > .headerBar {
+  border: 1px solid #e8e9eb;
+  background-color: #f6f8fb;
+  line-height: 3; }
+  .ellaTable > .headerBar > .locOrdersText {
+    margin-left: 55px; }
+
+.ellaTable > .bankTable {
+  width: 100%;
+  margin: 30px 0;
+  border-collapse: collapse; }
+  .ellaTable > .bankTable > tbody > tr:not(:first-of-type):hover {
+    cursor: pointer;
+    background-color: #f6f8fb;
+    outline-color: #e8e9eb; }
+    .ellaTable > .bankTable > tbody > tr:not(:first-of-type):hover > td {
+      color: #a0066f; }
+  .ellaTable > .bankTable > tbody > tr {
+    outline: 1px solid transparent; }
+    .ellaTable > .bankTable > tbody > tr > th {
+      text-align: left;
+      height: 50px; }
+    .ellaTable > .bankTable > tbody > tr > th:nth-child(1) {
+      padding-left: 55px; }
+    .ellaTable > .bankTable > tbody > tr > td {
+      padding-left: 0;
+      font-weight: 500;
+      font-size: 12pt;
+      color: #999; }
+    .ellaTable > .bankTable > tbody > tr > td:nth-child(1) {
+      font-weight: 500;
+      text-decoration: underline;
+      padding-left: 55px; }
+
+.matiasTable > .headerBar {
+  border: 1px solid #e8e9eb;
+  background-color: #f6f8fb;
+  line-height: 3; }
+  .matiasTable > .headerBar > .locOrdersText {
+    margin-left: 55px; }
+
+.matiasTable > .bankTable {
+  width: 100%;
+  margin: 30px 0;
+  border-collapse: collapse; }
+  .matiasTable > .bankTable > tbody > tr:not(:first-of-type):hover {
+    cursor: pointer;
+    background-color: #f6f8fb;
+    outline-color: #e8e9eb; }
+    .matiasTable > .bankTable > tbody > tr:not(:first-of-type):hover > td {
+      color: #3b34c4; }
+  .matiasTable > .bankTable > tbody > tr {
+    outline: 1px solid transparent; }
+    .matiasTable > .bankTable > tbody > tr > th {
+      text-align: left;
+      height: 50px; }
+    .matiasTable > .bankTable > tbody > tr > th:nth-child(1) {
+      padding-left: 55px; }
+    .matiasTable > .bankTable > tbody > tr > td {
+      padding-left: 0;
+      font-weight: 500;
+      font-size: 12pt;
+      color: #999; }
+    .matiasTable > .bankTable > tbody > tr > td:nth-child(1) {
+      font-weight: 500;
+      text-decoration: underline;
+      padding-left: 55px; }
+
+.UserDetails {
+  font-size: 10pt;
+  text-align: left;
+  padding-left: 60px;
+  padding-bottom: 50px;
+  color: white;
+  font-weight: 300; }
+  .UserDetails > h2 {
+    font-size: 19px;
+    font-weight: 300; }
+  .UserDetails > div {
+    margin-bottom: 10px; }
+    .UserDetails > div > b {
+      font-weight: 500; }
+
+.userDetailsTextBold {
+  font-weight: bold;
+  display: inline; }
 
 body {
   font-family: 'Open Sans'; }

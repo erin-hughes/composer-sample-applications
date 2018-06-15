@@ -152,17 +152,15 @@ class LetterOfCredit extends Component {
 
   createRules() {
     let rules = [];
-    let ruleIndex = 1;
-    this.props.rules.map((i) => {
-      if (i.ruleText !== "") {
+    for (let i = 0; i < this.props.rules.length; i++) {
+      if (this.props.rules[i].ruleText !== "") {
         rules.push({
           "$class": "org.example.loc.Rule",
-          "ruleId": "rule"+ruleIndex,
-          "ruleText": i.ruleText
+          "ruleId": "rule"+i,
+          "ruleText": this.props.rules[i].ruleText
         });
-      ruleIndex++;
       }
-    });
+    }
     return rules;
   }
 
@@ -340,20 +338,20 @@ class LetterOfCredit extends Component {
       if (isAwaitingApproval) {
         buttonJSX = (
           <div class="actions">
-            <button disabled={this.state.disableButtons} onClick={() => {this.showModal('REJECT')}}>I reject the application</button>
-            <button disabled={this.state.disableButtons} onClick={() => {this.showModal('APPROVE')}}>I accept the application</button>
+            <button className="secondaryButton" disabled={this.state.disableButtons} onClick={() => {this.showModal('REJECT')}}>I reject the application</button>
+            <button className="primaryButton" disabled={this.state.disableButtons} onClick={() => {this.showModal('APPROVE')}}>I accept the application</button>
           </div>
         );
       } else if (this.state.letter.status === 'RECEIVED' && this.state.user === 'matias') {
         buttonJSX = (
           <div class="actions">
-            <button disabled={this.state.disableButtons} onClick={() => {this.showModal('PAY')}}>Ready for Payment</button>
+            <button className="primaryButton" disabled={this.state.disableButtons} onClick={() => {this.showModal('PAY')}}>Ready for Payment</button>
           </div>
         );
       } else if (this.state.letter.status === 'READY_FOR_PAYMENT' && this.state.user === 'ella') {
         buttonJSX = (
           <div class="actions">
-            <button disabled={this.state.disableButtons} onClick={() => {this.showModal('CLOSE')}}>Close this Letter of Credit</button>
+            <button className="primaryButton" disabled={this.state.disableButtons} onClick={() => {this.showModal('CLOSE')}}>Close this Letter of Credit</button>
           </div>
         );
       } else {
@@ -362,7 +360,7 @@ class LetterOfCredit extends Component {
     } else {
       buttonJSX = (
         <div class="actions">
-          <button disabled={this.state.disableButtons || this.props.productDetails.type === "" || this.props.productDetails.quantity === 0 || this.props.productDetails.pricePerUnit === 0} onClick={() => {this.showModal('CREATE')}}>Start approval process</button>
+          <button className="primaryButton" disabled={this.state.disableButtons || this.props.productDetails.type === "" || this.props.productDetails.quantity === 0 || this.props.productDetails.pricePerUnit === 0} onClick={() => {this.showModal('CREATE')}}>Start approval process</button>
         </div>
       );
     }

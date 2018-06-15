@@ -103,22 +103,13 @@ td {
   justify-content: flex-end;
 
   > button {
-    border-radius: 30px;
     padding: 10px 20px;
     margin-right: 10px;
     font-weight: 500;
-    white-space: nowrap;
-    text-align: center;
     z-index: 99999999;
   }
 
-  > button:enabled {
-    background-color: #4880ff;
-    color: #fff;
-    border: 1px solid #4880ff;
-  }
-
-  > button:disabled {
+  > button:nth-child(2):disabled {
     cursor: not-allowed;
     background-color: transparent;
     border-color: black;
@@ -126,11 +117,6 @@ td {
     opacity: 0.3;
   }
 
-  > button:enabled:hover {
-    border: 1px solid #4880ff;
-    background-color: transparent;
-    color: #4880ff;
-  }
 }
 
 .statusMessage {

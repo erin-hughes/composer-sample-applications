@@ -18,7 +18,6 @@ class Step extends Component {
 
   generateStep(){
     let stepJSX = [];
-    console.log(this.state.stepPosition)
     let firstConnectorClass = this.state.stepPosition === "first" ? "blankStepConnector" : "stepConnector";
     let lastConnectorClass = this.state.stepPosition === "last" ? "blankStepConnector" : "stepConnector";
     if (this.state.stepType === "activeStep"){

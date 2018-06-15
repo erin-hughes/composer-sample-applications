@@ -75,8 +75,8 @@ class Modal extends Component {
             </table>
             { this.state.isLoading && <p class="loadingMessage">Please wait... </p> }
             <div id="buttonsRow" className="shipButtonsRow">
-              <button disabled={!this.state.isChecked || this.state.isLoading} className="yesButton" onClick={this.uploadInvoiceCallback}>Upload</button>
-              <button className="cancelButton" onClick={this.cancelShipCallback}>Cancel</button>
+              <button className="primaryButton" disabled={!this.state.isChecked || this.state.isLoading} onClick={this.uploadInvoiceCallback}>Upload</button>
+              <button className="secondaryButton" onClick={this.cancelShipCallback}>Cancel</button>
             </div>
           </div>
         );
@@ -87,8 +87,8 @@ class Modal extends Component {
             <h4 id="titleText" className="textMargins title">Are you sure you want to {this.props.modalType.toLowerCase()} this letter?</h4>
             <p id="messageBody" className="textMargins message">{message}</p>
             <div id="buttonsRow" className="buttonsRow">
-              <button className="yesButton" onClick={this.props.yesCallback}>Yes</button>
-              <button className="cancelButton" onClick={this.props.cancelCallback}>Cancel</button>
+              <button className="primaryButton" onClick={this.props.yesCallback}>Yes</button>
+              <button className="secondaryButton" onClick={this.props.cancelCallback}>Cancel</button>
             </div>
           </div>
         );

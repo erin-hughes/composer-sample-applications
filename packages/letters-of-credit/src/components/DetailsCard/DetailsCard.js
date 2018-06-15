@@ -62,14 +62,8 @@ class DetailsCard extends Component {
         );
         break;
       case 'Product':
-        let currency, amount;
-        if (this.props.user === 'alice' || this.props.user === 'matias') {
-          currency = '€';
-          amount = this.state.data[3];
-        } else {
-          currency = '$'
-          amount = this.state.data[3] * 1.15;
-        }
+        let currency = (this.props.user === 'alice' || this.props.user === 'matias') ? '€' : '$';
+        let amount = (this.props.user === 'alice' || this.props.user === 'matias') ? this.state.data[3] : this.state.data[3] * 1.15;
 
         jsx = (
           <div>
@@ -84,7 +78,7 @@ class DetailsCard extends Component {
           </div>
         );
         break;
-      case 'Rules':
+      default:
         mainHeadingTxt = "Terms of Letter of Credit";
         if(this.state.editable) {
           jsx = (

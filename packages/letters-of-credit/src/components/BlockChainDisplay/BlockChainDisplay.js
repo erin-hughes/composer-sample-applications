@@ -3,26 +3,21 @@ import '../../stylesheets/css/main.css';
 import Block from '../../components/Block/Block.js';
 
 class BlockChainDisplay extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      transactions: []
-    }
-  }
 
   getSpecificInfo() {
     let transactions = [];
-    this.props.transactions.map((tx, index) => {
+    for (let i = 0; i < this.props.transactions.length; i++) {
       let transaction = {
-        name: "",
-        timestamp: tx.transactionTimestamp
-      }
-      if (tx.transactionType === 'org.example.loc.InitialApplication') {
+        name : '',
+        timestamp: this.props.transactions[i].transactionTimestamp
+      };
+
+      if (this.props.transactions[i].transactionType === 'org.example.loc.InitialApplication') {
         transaction.name = 'Created by Alice';
-      } else if (tx.transactionType === 'org.example.loc.Approve') {
-        switch (index) {
-          case 1: 
-            transaction.name = 'Approved by Matías'; 
+      } else if (this.props.transactions[i].transactionType === 'org.example.loc.Approve') {
+        switch (i) {
+          case 1:
+            transaction.name = 'Approved by Matías';
             break;
           case 2:
             transaction.name = 'Approved by Ella';
@@ -30,23 +25,23 @@ class BlockChainDisplay extends React.Component {
           case 3:
             transaction.name = 'Approved by Bob';
             break;
-          default: 
+          default:
             transaction.name = 'Approved';
             break;
         }
-      } else if (tx.transactionType === 'org.example.loc.ShipProduct') {
+      } else if (this.props.transactions[i].transactionType === 'org.example.loc.ShipProduct') {
         transaction.name = 'Shipped by Bob';
-      } else if (tx.transactionType === 'org.example.loc.ReceiveProduct') {
+      } else if (this.props.transactions[i].transactionType === 'org.example.loc.ReceiveProduct') {
         transaction.name = 'Received by Alice';
-      } else if (tx.transactionType === 'org.example.loc.ReadyForPayment') {
+      } else if (this.props.transactions[i].transactionType === 'org.example.loc.ReadyForPayment') {
         transaction.name = 'Paid by Matías';
-      } else if (tx.transactionType === 'org.example.loc.Close') {
+      } else if (this.props.transactions[i].transactionType === 'org.example.loc.Close') {
         transaction.name = 'Closed by Ella';
       } else {
         transaction.name = 'Rejected';
       }
       transactions.push(transaction);
-    });
+    }
     return transactions;
   }
 

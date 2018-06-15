@@ -3,8 +3,6 @@ import { Redirect } from 'react-router-dom';
 import Config from '../../utils/config';
 import '../../stylesheets/css/main.css';
 import axios from 'axios';
-import viewButtonIconAlice from '../../resources/images/viewLocIcon.png';
-import viewButtonIconBob from '../../resources/images/viewLocIconBob.png';
 import Toggle from 'react-toggle';
 import "react-toggle/style.css";
 import Modal from '../Modal/Modal.js';
@@ -89,18 +87,15 @@ class LoCCard extends Component {
     return status.toUpperCase();
   }
 
-  generateCardContents(letter, user) {
-    let contents;
-    let newMessage = "";
-    if(!this.props.letter.approval.includes("bob")){
-      newMessage = "NEW";
-    }
-    //generate new LoC cards
-    if (user === 'bob') {
+  generateBobCardContents(letter) {
+    let contents = <div/>;
+    let status = (letter.approval.includes('resource:org.example.loc.Customer#bob')) ? this.generateStatus(letter) : 'NEW';
+    
+    if (letter.status === 'AWAITING_APPROVAL') {
       contents = (
         <div className = "LoCCardBob">
           <div>
-            <h2>{newMessage}</h2>
+            <h2>{status}</h2>
             <h2>{'Ref: ' + letter.letterId}</h2>
             <p>Product Type: <b>{letter.productDetails.productType}</b></p>
             <div className = "toggleContainer hide">
@@ -111,8 +106,32 @@ class LoCCard extends Component {
           <img class="viewButtonBob" src={viewArrow} alt="View Letter of Credit" onClick={() => this.handleOnClick()}/>
         </div>
       );
-    }
-    else { // if the current user is not bob then it must be alice
+    } else {
+      let checked = letter.status !== 'APPROVED';
+      let idStyle = checked ? "LoCCardBobAccepted" : ""
+      let hash = new Date().getTime().toString(24);
+      contents = (
+        <div className="LoCCardBob" id={idStyle}>
+          <Modal show={this.state.showModal} modalType={'SHIP'} cancelCallback={this.hideModal} yesCallback={() => this.shipProduct(letter.letterId, hash)}/>
+          <div>
+            <h2>{status}</h2>
+            <h2>{'Ref: ' + letter.letterId}</h2>
+            <p>Product Type: <b>{letter.productDetails.productType}</b></p>
+            <div className="toggleContainer">
+            <Toggle className='customToggle' checked={checked} defaultChecked={false} disabled={checked} onChange={this.showModal}  />
+              <span className="shipText">Ship Product</span>
+            </div>
+          </div>
+          <img className="viewButtonBob" src={viewArrow} alt="View Letter of Credit" onClick={() => this.handleOnClick()}/>
+        </div>
+      );
+    } 
+    return contents;
+  }
+
+  generateAliceCardContents(letter) {
+    let contents = <div/>;
+    if (letter.status === 'AWAITING_APPROVAL' || letter.status === 'APPROVED') {
       contents = (
         <div className = "LoCCard">
           <div>
@@ -122,54 +141,17 @@ class LoCCard extends Component {
             <div className = "toggleContainer hide">
                 <Toggle className='customToggle customToggleAlice' defaultChecked={false} icons={false} disabled/>
                 <span className="shipText">Receive Product</span>
-              </div>
+            </div>
             <button className="viewButton" onClick={() => this.handleOnClick()}>
               <p className="buttonText"><span>View Letter Of Credit</span></p>
             </button>
           </div>
         </div>
       );
-    }
-    let shippingText;
-    let checked = letter.status !== 'APPROVED';
-    //generate accepted LoC cards
-    if (user === 'bob') {
-      if (letter.status !== 'AWAITING_APPROVAL') {
-        // generating a hash from the timestamp
-        let idStyle;
-        shippingText = "Ship Product";
-        if (letter.status !== 'APPROVED'){
-          idStyle = "LoCCardBobAccepted";
-          this.state.toggleChecked = true;
-          this.state.toggleDisabled = true;
-          shippingText = "Product Shipped";
-        }
-        let hash = new Date().getTime().toString(24);
-        contents = (
-          <div className = "LoCCardBob" id= {idStyle}>
-            <Modal show={this.state.showModal} modalType={'SHIP'} cancelCallback={this.hideModal} yesCallback={() => {this.shipProduct(letter.letterId, hash)}}/>
-            <div>
-              <h2>{this.generateStatus(letter)}</h2>
-              <h2>{'Ref: ' + letter.letterId}</h2>
-              <p>Product Type: <b>{letter.productDetails.productType}</b></p>
-              <div className = "toggleContainer">
-                <Toggle className='customToggle' checked={checked} defaultChecked={this.state.toggleChecked} onChange={this.showModal} disabled ={this.state.toggleDisabled} />
-                <span className="shipText">{shippingText}</span>
-              </div>
-                <img class="viewButtonBob" src={viewArrow} alt="View Letter of Credit" onClick={this.handleOnClick}/>
-            </div>
-          </div>
-        );
-      }
     } else {
       if (letter.status !== 'AWAITING_APPROVAL' && letter.status !== 'APPROVED' && letter.status !== 'REJECTED') {
-        // generating a hash from the timestamp
-        shippingText = "Receive Product";
-        if (letter.status !== 'SHIPPED') {
-          this.state.toggleChecked = true;
-          this.state.toggleDisabled = true;
-          shippingText = "Product Received";
-        }
+        let shippingText = letter.status !== 'SHIPPED' ? "Receive Product" : "Product Received";
+        let checked = letter.status !== 'SHIPPED' ? true : false;
         contents = (
           <div className = "LoCCard">
             <div>
@@ -177,7 +159,7 @@ class LoCCard extends Component {
               <h2>{'Ref: ' + letter.letterId}</h2>
               <p>Product Type: <b>{letter.productDetails.productType}</b></p>
               <div className = "toggleContainer">
-                <Toggle className='customToggle customToggleAlice' defaultChecked={this.state.toggleChecked} icons={false} onChange={() => {this.receiveProduct(letter.letterId)}} disabled ={this.state.toggleDisabled}/>
+                <Toggle className='customToggle customToggleAlice' defaultChecked={checked} disabled={checked} icons={false} onChange={() => {this.receiveProduct(letter.letterId)}}/>
                 <span className="shipText">{shippingText}</span>
               </div>
               <button className="viewButton" onClick={() => this.handleOnClick()}>
@@ -187,7 +169,7 @@ class LoCCard extends Component {
           </div>
         );
       }
-    }
+    } 
     return contents;
   }
 
@@ -195,9 +177,7 @@ class LoCCard extends Component {
     if (this.state.redirect) {
       return <Redirect push to={"/" + this.props.user + "/loc/" + this.props.letter.letterId} />;
     }
-    return (
-        this.generateCardContents(this.props.letter, this.props.user)
-    );
+    return (this.props.user === 'alice') ? this.generateAliceCardContents(this.props.letter) : this.generateBobCardContents(this.props.letter);
   }
 }
 
